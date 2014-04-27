@@ -1,0 +1,27 @@
+package interfaces;
+
+public interface Face {
+    // Definition: An inner Face is a Face that can not be divided into smaller
+    // Faces.
+    public void merge();
+    // deletes all inner Faces that belongs to this Face, that means this Face
+    // becomes an inner Face
+    public void divide(Point p);
+    // if !(isInnerFace() and hasPoint(p)), nothing happens. otherwise this Face
+    // is divided into 3 Subfaces with p as the common Point
+    public int size();
+    // returns the number of inner Faces
+    public boolean isInnerFace();
+    // returns True, iff this Face is an inner Face
+    public Face[] smallerFaces();
+    // returns the three Faces, whose union equals this Face. returns null, iff
+    // (isInnerFace())
+    public Face outerFace();
+    // returns the smallest outer Face for this Face. returns null, iff there is
+    // no such Face
+    public Point[] getPoints();
+    // returns the 3 Vertex-Points of this Face
+    public boolean hasPoint(Point p);
+    // returns True, iff p belongs to the triangle, that is spanned by his 3
+    // Vertex-Points
+}
