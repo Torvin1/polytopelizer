@@ -1,4 +1,4 @@
-package interfaces;
+package Geometry;
 
 public class Point {
     private final double x, y, z;
