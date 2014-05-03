@@ -6,27 +6,27 @@ public interface Face {
     // Definition: A smallest Face is a Face that can not be divided into smaller
     // Faces.
     public void merge();
-    // deletes all inner Faces that belongs to this Face, that means this Face
+    // Deletes all smaller Faces that belongs to this Face, that means this Face
     // becomes a smallest Face
     public void divide(Point p);
-    // if !(isSmallestFace() and hasPoint(p)), nothing happens. otherwise this Face
-    // is divided into 3 Subfaces with p as the common Point
+    // If not (isSmallestFace() and hasPoint(p)), nothing happens. Otherwise this Face
+    // is divided into 3 smallest Subfaces with p as the common Point.
     public int size();
-    // returns the number of smallest Faces
+    // Returns the number of smallest Faces.
     public boolean isSmallestFace();
-    // returns True, iff this Face is a smallest Face
+    // Returns True, iff this Face is a smallest Face.
     public Face[] smallerFaces();
-    // returns the three Faces, whose union equals this Face. returns null, iff
-    // (isSmallestFace())
+    // Returns the three Subfaces, whose union equals this Face. Returns null, iff
+    // (isSmallestFace()).
     public Face smallestFaceforPoint(Point p);
-    // returns the smallest Face, for which p belongs to.
-    // returns null, if there is no such Face.
+    // Returns the smallest Face, for which p belongs to. Returns null,
+    // iff there is no such Face.
     public Face outerFace();
-    // returns the smallest outer Face for this Face. returns null, iff there is
-    // no such Face
+    // Returns the outer Face which belongs to this Face. Returns null, iff there is
+    // no such Face.
     public Point[] getPoints();
-    // returns the 3 Vertex-Points of this Face
+    // Returns the 3 Vertex-Points of this Face.
     public boolean hasPoint(Point p);
-    // returns True, iff p belongs to the triangle, that is spanned by his 3
-    // Vertex-Points
+    // Returns True, iff p belongs to the Triangle, that is spanned by his 3
+    // Vertex-Points.
 }

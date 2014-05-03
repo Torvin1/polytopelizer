@@ -6,6 +6,10 @@ import interfaces.*;
 public class ApollNetwork implements ApollonianNetwork {
 
     private Face faces;
+    
+    public ApollNetwork(){
+        this(new Point(),new Point(0,100),new Point(50,60));
+    }
 
     public ApollNetwork(Point p1, Point p2, Point p3) {
         this.faces = new GraphFace(p1, p2, p3);
