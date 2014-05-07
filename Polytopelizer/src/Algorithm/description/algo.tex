@@ -40,7 +40,7 @@ The tree representation is decomposed in \textit{heavy paths}. Resulting sub-tre
 \section{Balance the tree}
 \begin{algorithmic}
 \Function{BALANCE}{C} 
-\State \textbf{Input:} A caterpillar $C$ from the heavy caterpillar decomposition of $\Tau(G)$.
+\State \textbf{Input:} A caterpillar $C$ from the heavy caterpillar decomposition of $\Tau(G)$. All weights are equal 1.
 \State \textbf{Output:} Weights for the nodes of $\Tau(G)$.
 
 \ForAll{$t_i$, $t'_i$ in $C$} 
@@ -55,6 +55,11 @@ The tree representation is decomposed in \textit{heavy paths}. Resulting sub-tre
 \EndFor
 \EndFunction
 \end{algorithmic}
+
+
+A balanced Tree:
+
+\includegraphics[scale=1]{balancedTree.png} 
 
 
 \section{Get the coefficients}
@@ -86,6 +91,8 @@ $$
 $$
 
 \section{The lifting}
+
+Pages 133 to 139 of REALIZATION SPACES OF POLYTOPES
 
 
 
