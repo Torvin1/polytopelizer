@@ -1,0 +1,12 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Equilibrium Stresses}{}% 2
+\BOOKMARK [1][-]{section.3}{The algorithms}{}% 3
+\BOOKMARK [1][-]{section.4}{The Entry of the algorithm}{}% 4
+\BOOKMARK [1][-]{section.5}{Heavy caterpillar decomposition}{}% 5
+\BOOKMARK [1][-]{section.6}{Balance the tree}{}% 6
+\BOOKMARK [1][-]{section.7}{First algorithm}{}% 7
+\BOOKMARK [2][-]{subsection.7.1}{Get the coefficients}{section.7}% 8
+\BOOKMARK [2][-]{subsection.7.2}{The lifting}{section.7}% 9
+\BOOKMARK [1][-]{section.8}{Second algorithm}{}% 10
+\BOOKMARK [2][-]{subsection.8.1}{Lift the graph}{section.8}% 11
+\BOOKMARK [2][-]{subsection.8.2}{Round the graph to grid points}{section.8}% 12
