@@ -24,6 +24,7 @@ public class DrawLayerUI extends LayerUI<JComponent> {
       Graphics2D g2 = (Graphics2D) g.create();
       
       ApollNetwork dummy = new ApollNetwork(new Point2D(7,7), new Point2D(1000,250), new Point2D(7,550));
+//      TODO doesn't seem to add the subfaces 
       dummy.addNode(60, 250);
       
       
