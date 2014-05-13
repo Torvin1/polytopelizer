@@ -1,13 +1,12 @@
 package input;
 
-import java.awt.event.KeyEvent;
-
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 
 
+@SuppressWarnings("serial")
 public class InputFrameMenuBar extends JMenuBar{
 
 /*#################### attributes ###########################################*/

@@ -3,49 +3,62 @@ package input;
 
 /*#################### imports ##############################################*/
 
-import java.util.jar.JarInputStream;
-
 import javax.swing.*;
 
-// TODO add menubar , save (load), undo last edit , 
+// TODO grobal field for faces, points ?
 // TODO create a drawing surface
-// 
+// TODO Drawing panel
+// TODO Event listener (menubar, point drawing)
+// TODO Input management
 
 
-public class InputFrame{
 /**
-*provides the basic frame for general input 
-*
-*/
+ * Core for the input 
+ *  
+ */
+public class InputFrame{
 
-/*#################### attributes ###########################################*/
-
+/*########################### attributes ####################################*/
 
 /*###########################constructor ####################################*/
 
-/*############################# methods ####################################*/	
+/*############################# methods #####################################*/	
 
-// TODO Drawing frame
-// TODO Event listener
-// TODO Input management
-public static void CreateAndShowGUI(String name) 
+/**
+ * Method to create the input GUI
+ * 
+ */
+    public static void CreateAndShowGUI(String name) 
 {
+        
+//  Frame to work in
     JFrame inputframe = new JFrame(name);
+//  Close Button 
     inputframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    JLabel label = new JLabel("Hello World");
+    
+//  set title 
+
+
+//  adding elements to the frame
+//  top menubar
     inputframe.setJMenuBar(new InputFrameMenuBar());
-    inputframe.getContentPane().add(label);
+//  drawing area gets added
+    inputframe.add(new InputPanel());
+    
+//  frame elemets get merged 
     inputframe.pack();
+//  frame is now visible
     inputframe.setVisible(true);
 }
 
 /*#######################main to test it ####################################*/
 
 public static void main(String[] args) 
-	{// show the frame 
+	{
+    // new thread for the frame
 	javax.swing.SwingUtilities.invokeLater(new Runnable() {
-		public void run() {
-	
+		// start the frame set
+	    public void run() {
 			CreateAndShowGUI("Polytopelizer");
 		}
 	});
