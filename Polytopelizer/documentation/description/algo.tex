@@ -150,14 +150,35 @@ Where $(i,j)$ is the common edge of $f_i$ and $f_l$ and $\mathbf{q}_i$ is define
 
 $$\mathbf{q}_i = (x_i,y_i,1)^T$$
 
-Now to calculate the heigth from a point $\mathbf{p}_i$ we have to make the inner product from $\mathbf{p}_i$ with $a_k$. Who is the parameter from face $k$ whose one of the vertices is $\mathbf{p}_i$.
+Now to calculate the height from a point $\mathbf{p}_i$ we have to make the inner product from $\mathbf{p}_i$ with $a_k$. Who is the parameter from face $k$ whose one of the vertices is $\mathbf{p}_i$.
 
 $$h_i = \langle \mathbf{p}_i, a_k\rangle$$
 
 \section{Second algorithm}
 
-\subsection{Lift the graph} 
+\subsection{Calculate the shifts} 
+
+As the vertex $v_i$ is stacked on a face $f_D$ is new height is:
+
+$$z= \zeta_i + z_D $$
+
+Where $z_D$ is the height of the point in the face $D$ and the shift $\zeta_i$ is:
+
+$$\zeta_i = A_i\cdot B_i$$
+
+Where  $ A_i$ and $B_i$ are the two possible weights of the three new faces formed by the vertex $v_i$. Remember $w(t_i)= w(t'_i) $.
+
+But before we calculate the new heights ($z_i$) we round the coordinates in the embedding, and then also the heights.
 
 \subsection{Round the graph to grid points}
+
+The coordinates on the embedding are all rounded so that they multiples of $1/\text{pert}$, where:
+
+$$\text{pert}=240n^{\frac{3}{2}}$$
+
+Now we lift, rounding, the points so that the heights $z= \zeta_i + z_D $ are multiples of $1/\text{pert}_z$, where: 
+
+$$\text{pert}_z=3n$$ 
+
 
 \end{document}
