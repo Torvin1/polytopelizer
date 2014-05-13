@@ -4,10 +4,9 @@ package input;
 /*#################### imports ##############################################*/
 
 import javax.swing.*;
+import javax.swing.plaf.LayerUI;
 
 // TODO grobal field for faces, points ?
-// TODO create a drawing surface
-// TODO Drawing panel
 // TODO Event listener (menubar, point drawing)
 // TODO Input management
 
@@ -43,7 +42,15 @@ public class InputFrame{
 //  top menubar
     inputframe.setJMenuBar(new InputFrameMenuBar());
 //  drawing area gets added
-    inputframe.add(new InputPanel());
+    InputPanel inputpanel = new InputPanel();
+
+    //inputframe.add(inputpanel); // simple mouse eventpanel
+    
+    //adding a layer to draw on
+    LayerUI<JComponent> layerUI = new DrawLayerUI();
+    //combining interactive panel with a drawlayer
+    JLayer<JComponent> jlayer = new JLayer<JComponent>(inputpanel, layerUI);
+    inputframe.add(jlayer);
     
 //  frame elemets get merged 
     inputframe.pack();
