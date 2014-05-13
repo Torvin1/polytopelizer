@@ -25,7 +25,7 @@ import Geometry.Point2D;
 public class InputPanel extends JPanel implements MouseListener {
 
 /*########################### attributes ####################################*/
-
+//  TODO replace storage with appollian network
     private static ArrayList<Point2D> storage;
     
 /*###########################constructor ####################################*/
@@ -74,6 +74,7 @@ public class InputPanel extends JPanel implements MouseListener {
  * equals cannot be used because p is always a different object
  */
     // TODO (performance)maybe exchange with the coordinates and create point later
+    // TODO replace with adequat function to check if part of aN and not on an edge
 private boolean isIn( Point2D p) {
     
     for (int i = 0;i < storage.size(); i++) {
@@ -107,9 +108,9 @@ private void storageFill(Point2D p) {
 
 @Override
 public void mouseClicked(MouseEvent e) {
-
+// TODO insert point in aN
 //    storageFill(new Point2D(e.getX(),e.getY()));
-    System.out.println("clicked");
+    System.out.printf("clicked @ %d , %d \n",e.getX(),e.getY());
 }
 
 @Override
