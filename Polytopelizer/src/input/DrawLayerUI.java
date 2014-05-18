@@ -1,5 +1,6 @@
-package input;
+package Input;
 
+import interfaces.ApollonianNetwork;
 import interfaces.Face;
 
 import java.awt.Graphics;
@@ -10,12 +11,14 @@ import Geometry.Point2D;
 
 import javax.swing.JComponent;
 import javax.swing.plaf.LayerUI;
-import javax.swing.text.StyleContext.SmallAttributeSet;
 
 import Datastructures.ApollNetwork;
 
 @SuppressWarnings("serial")
 public class DrawLayerUI extends LayerUI<JComponent> {
+    
+    private final static int offsetX = 250;
+    private final static int offsetY = 50;
     @Override
     public void paint(Graphics g, JComponent c) {
 //      draws the components
@@ -23,28 +26,29 @@ public class DrawLayerUI extends LayerUI<JComponent> {
 //    creates an new graphic in the drawing layer
       Graphics2D g2 = (Graphics2D) g.create();
       
-      ApollNetwork dummy = new ApollNetwork(new Point2D(7,7), new Point2D(1000,250), new Point2D(7,550));
-//      TODO doesn't seem to add the subfaces 
-      dummy.addNode(60, 250);
+      ApollonianNetwork dummy = new ApollNetwork(new Point2D(0+offsetX,500+offsetY), new Point2D(500+offsetX,500+offsetY), new Point2D(250+offsetX,67+offsetY));
+
+      dummy.addNode(300+offsetX, 250+offsetY);  // will be inserted
+      dummy.addNode(200+offsetX,400+offsetY);    // will be inserted
+      dummy.addNode(30+offsetX, 400+offsetY);   // won't be inserted
       
       
 //      paints the network into the graphic
-      paintApollNetwork(g2, dummy);
-//      frees the resources after drawing 
+
+      paintApollonianNetwork(g2, dummy);
+//      frees the resources after drawing
       g2.dispose();
     }
     /*
      * TODO fills the drawing layer with the current apollnetwork
      */
-private void paintApollNetwork(Graphics2D g, ApollNetwork aN) {
+private void paintApollonianNetwork(Graphics2D g, ApollonianNetwork aN) {
     ArrayList<Face> smallestfaces = new ArrayList<Face>();
+    Face faces = aN.getFaces();
 //  helpfunction to access the outterface
-    System.out.printf("Before getting the faces : %s",smallestfaces);
-    if (!aN.getFaces().isSmallestFace()) {
-        smallestfaces.add(aN.getFaces());
-        getSmallestFaces(aN.getFaces(), smallestfaces);
-    }
-    System.out.printf("After getting the faces : %s",smallestfaces);
+    smallestfaces.add(faces);
+    if (!faces.isSmallestFace()) 
+        getSmallestFaces(faces, smallestfaces);
     for (int i = 0 ; i < smallestfaces.size() ; i ++) {
         paintFace(g, smallestfaces.get(i));
     }
@@ -64,10 +68,8 @@ synchronized private void getSmallestFaces(Face f, ArrayList<Face> smallestfaces
     if (! f.isSmallestFace()) {
         for (int i = 0 ; i < f.smallerFaces().length ; i++) {
             getSmallestFaces(f.smallerFaces()[i],smallestfaces);
-            System.out.printf("Face is not a smallest face : %s\n", f.toString());
         }
     }else {
-        System.out.printf("Face is a smallest face : %s\n", f.toString());
         smallestfaces.add(f);
     }
 }

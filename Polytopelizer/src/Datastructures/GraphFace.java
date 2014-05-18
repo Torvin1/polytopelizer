@@ -58,8 +58,8 @@ public class GraphFace implements Face {
     }
 
     public Face smallestFaceforPoint(Point2D p) {
-        if (isSmallestFace() || !hasPoint(p))
-            return hasPoint(p) ? this : null;
+        if (isSmallestFace() || !hasPoint(p)){
+            return hasPoint(p) ? this : null;}
         if (innerFaces[0].hasPoint(p))
             return innerFaces[0].smallestFaceforPoint(p);
         else if (innerFaces[1].hasPoint(p))
@@ -84,14 +84,18 @@ public class GraphFace implements Face {
         double[] v1 = new double[] { 1, points[0].x(), points[0].y() };
         double[] v2 = new double[] { 1, points[1].x(), points[1].y() };
         double[] v3 = new double[] { 1, points[2].x(), points[2].y() };
+        System.out.println(p);
+        System.out.println(points[0]);
+        System.out.println(points[1]);
+        System.out.println(points[2]);
         try {
             double faceDet = Geom.det(new double[][] { v1, v2, v3 });
             double det1 = Geom.det(new double[][] { v0, v2, v3 });
             double det2 = Geom.det(new double[][] { v1, v0, v3 });
             double det3 = Geom.det(new double[][] { v1, v2, v0 });
             boolean onSameSide = faceDet * det1 >= 0;
-            onSameSide = onSameSide && faceDet * det2 <= 0;
-            onSameSide = onSameSide && faceDet * det3 >= 0;
+            onSameSide = onSameSide && (faceDet * det2 >= 0);
+            onSameSide = onSameSide && (faceDet * det3 >= 0);
             return onSameSide;
         } catch (IllegalMatrixException e) {
             e.printStackTrace();
