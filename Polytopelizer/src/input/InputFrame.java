@@ -1,10 +1,16 @@
-package Input;
+package input;
 
 
 /*#################### imports ##############################################*/
 
+import Geometry.Point2D;
+
+import interfaces.ApollonianNetwork;
+
 import javax.swing.*;
 import javax.swing.plaf.LayerUI;
+
+import Datastructures.ApollNetwork;
 
 // TODO grobal field for faces, points ?
 // TODO Event listener (menubar, point drawing)
@@ -19,6 +25,10 @@ public class InputFrame{
 
 /*########################### attributes ####################################*/
 
+    public static ApollonianNetwork aN;
+    public final static int offsetX = 250;
+    public final static int offsetY = 50;
+    
 /*###########################constructor ####################################*/
 
 /*############################# methods #####################################*/	
@@ -29,7 +39,7 @@ public class InputFrame{
  */
     public static void CreateAndShowGUI(String name) 
 {
-        
+    aN = new ApollNetwork(new Point2D(0+offsetX,500+offsetY), new Point2D(500+offsetX,500+offsetY), new Point2D(250+offsetX,67+offsetY));
 //  Frame to work in
     JFrame inputframe = new JFrame(name);
 //  Close Button 
@@ -66,6 +76,7 @@ public static void main(String[] args)
 	javax.swing.SwingUtilities.invokeLater(new Runnable() {
 		// start the frame set
 	    public void run() {
+	        
 			CreateAndShowGUI("Polytopelizer");
 		}
 	});

@@ -93,9 +93,9 @@ public class GraphFace implements Face {
             double det1 = Geom.det(new double[][] { v0, v2, v3 });
             double det2 = Geom.det(new double[][] { v1, v0, v3 });
             double det3 = Geom.det(new double[][] { v1, v2, v0 });
-            boolean onSameSide = faceDet * det1 >= 0;
-            onSameSide = onSameSide && (faceDet * det2 >= 0);
-            onSameSide = onSameSide && (faceDet * det3 >= 0);
+            boolean onSameSide = faceDet * det1 > 0;
+            onSameSide = onSameSide && (faceDet * det2 > 0);
+            onSameSide = onSameSide && (faceDet * det3 > 0);
             return onSameSide;
         } catch (IllegalMatrixException e) {
             e.printStackTrace();

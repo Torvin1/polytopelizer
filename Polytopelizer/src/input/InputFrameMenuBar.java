@@ -1,4 +1,4 @@
-package Input;
+package input;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
