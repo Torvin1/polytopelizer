@@ -6,7 +6,7 @@ import interfaces.Face;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import javax.swing.JComponent;
 import javax.swing.plaf.LayerUI;
@@ -19,6 +19,8 @@ public class DrawLayerUI extends LayerUI<JComponent> {
         // draws the components
         super.paint(g, c);
         // creates an new graphic in the drawing layer
+        System.out.println("ich werde aufgerufen.");
+        
         Graphics2D g2 = (Graphics2D) g.create();
 
         // paints the network into the graphic
@@ -32,7 +34,7 @@ public class DrawLayerUI extends LayerUI<JComponent> {
      * TODO fills the drawing layer with the current apollnetwork
      */
     private void paintApollonianNetwork(Graphics2D g, ApollonianNetwork aN) {
-        ArrayList<Face> smallestfaces = new ArrayList<Face>();
+        LinkedList<Face> smallestfaces = new LinkedList<Face>();
         Face faces = aN.getFaces();
         // helpfunction to access the outterface
         smallestfaces.add(faces);
@@ -55,7 +57,7 @@ public class DrawLayerUI extends LayerUI<JComponent> {
      * TODO error in creating a list with just inner faces
      */
     synchronized private void getSmallestFaces(Face f,
-            ArrayList<Face> smallestfaces) {
+            LinkedList<Face> smallestfaces) {
         if (!f.isSmallestFace()) {
             for (int i = 0; i < f.smallerFaces().length; i++) {
                 getSmallestFaces(f.smallerFaces()[i], smallestfaces);

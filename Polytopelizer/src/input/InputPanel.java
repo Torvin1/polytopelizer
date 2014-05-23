@@ -6,7 +6,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
-import java.util.ArrayList;
+
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -28,7 +28,7 @@ public class InputPanel extends JPanel implements MouseListener, MouseMotionList
      * ####################################
      */
     // TODO replace storage with appollian network
-    private static ArrayList<Point2D> storage;
+//    private static ArrayList<Point2D> storage;
 
     /*
      * ###########################constructor
@@ -38,9 +38,9 @@ public class InputPanel extends JPanel implements MouseListener, MouseMotionList
     public InputPanel() {
         // creates a JFrame
         super();
-        InputPanel.storage = new ArrayList<Point2D>();
-        InputPanel.storage.add(new Point2D(7, 550));
-        InputPanel.storage.add(new Point2D(1000, 7));
+//        InputPanel.storage = new ArrayList<Point2D>();
+//        InputPanel.storage.add(new Point2D(7, 550));
+//        InputPanel.storage.add(new Point2D(1000, 7));
         // propreties of the JFrame
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         this.setBackground(Color.WHITE);
@@ -49,8 +49,10 @@ public class InputPanel extends JPanel implements MouseListener, MouseMotionList
         this.setPreferredSize(new java.awt.Dimension(1024, 576));
         // gives panel a border
         this.setBorder(BorderFactory.createLineBorder(Color.black));
-
+        
+        addMouseWheelListener(this);
         addMouseMotionListener(this);
+        addMouseListener(this);
     }
 
     /*
@@ -58,10 +60,10 @@ public class InputPanel extends JPanel implements MouseListener, MouseMotionList
      * ######################################
      */
 
-    public static ArrayList<Point2D> getStorage() {
-
-        return storage;
-    }
+//    public static ArrayList<Point2D> getStorage() {
+//
+//        return storage;
+//    }
 
     /*
      * event to add a new point to the network
@@ -71,10 +73,12 @@ public class InputPanel extends JPanel implements MouseListener, MouseMotionList
     public void mouseClicked(MouseEvent e) {
 
         InputFrame.aN.addNode(e.getX(), e.getY());
-        // System.out.printf("clicked @ %d , %d \n",e.getX(),e.getY());
+        InputFrame.aN_points.add(new Point2D(e.getX(), e.getY()));
+//        System.out.printf("clicked @ %d , %d \n",e.getX(),e.getY());
         repaint();
     }
-
+    
+    
     @Override
     public void mousePressed(MouseEvent e) {
         // TODO Auto-generated method stub
