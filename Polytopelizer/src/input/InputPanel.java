@@ -1,4 +1,4 @@
-package input;
+package Input;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
