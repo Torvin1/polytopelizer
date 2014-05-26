@@ -1,4 +1,4 @@
-package input;
+package Input;
 
 import interfaces.ApollonianNetwork;
 import interfaces.Face;
