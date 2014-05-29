@@ -30,4 +30,11 @@ public interface Face {
     public boolean hasPoint(Point2D p);
     // Returns True, iff p belongs to the Triangle, that is spanned by his 3
     // Vertex-Points.
+    public void caterpillar();
+    //from the actual tree construct a caterpillar
+    public void balance();
+    //balance the Tree
+    public int Weight(); // view the weight
+    public void addSpineWeight(int dif); //add the dif to the weight from all node spine
+    
 }

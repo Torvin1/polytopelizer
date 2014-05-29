@@ -8,6 +8,8 @@ public class GraphFace implements Face {
     private Point2D[] points;
     private Face[] innerFaces;
     private Face father;
+    private int weight;//have to modify to bigintenger
+    private int spineInd; //gives the index from the child that is a spine node
 
     // Create a new Outer Face f0 without any smaller Faces.
     public GraphFace(Point2D p1, Point2D p2, Point2D p3) {
@@ -17,6 +19,7 @@ public class GraphFace implements Face {
         this.points[2] = p3;
         this.innerFaces = null;
         this.father = null;
+        this.weight = 1;
     }
 
     public void merge() {
@@ -114,5 +117,69 @@ public class GraphFace implements Face {
         }
         return result;
     }
-
+    
+    
+     public void caterpillar(){
+    	//the child with the greatest size is the spine node
+    	int[] v = new int[3];
+    	int i;
+    	if (isSmallestFace())
+    		return;
+    	else{
+    		for (i=0; i <3; i++){
+    			v[i] = this.innerFaces[i].size();
+    		}
+    		int max = v[0];
+    		int maxi = 0;
+    		for(i=1; i <3; i++){
+    			if(v[i]>max){
+    				max = v[i];
+    				maxi = i;
+    			}
+    		}
+    		this.spineInd = maxi;	
+    		for (i=0; i <3; i++){
+    			this.innerFaces[i].caterpillar();
+    		}
+    	}
+    }
+ 
+    public int Weight(){
+    	return this.weight;
+    }
+   
+    public void addSpineWeight(int dif){
+    	if (isSmallestFace()){
+			this.weight = this.weight + dif;
+    		return;
+		}
+    	else{
+    		this.weight = this.weight + dif;
+    		this.innerFaces[this.spineInd].addSpineWeight(dif);
+     	}
+    }
+    
+	public void balance() {
+		if (isSmallestFace()){
+			return;
+		}
+		else{
+			int x = this.spineInd;
+			int y = (x + 1)%3;
+			int z = (y + 1)%3;
+			this.innerFaces[x].balance();
+			this.innerFaces[y].balance();
+			this.innerFaces[z].balance();
+			if( this.innerFaces[y].Weight() > this.innerFaces[z].Weight()){
+				int temp = y;
+				y = z;
+				z = temp;
+			}
+			int dif = this.innerFaces[z].Weight() - this.innerFaces[y].Weight();
+			if (dif != 0)
+				this.innerFaces[y].addSpineWeight(dif);
+			
+			this.weight = this.innerFaces[x].Weight() + 2*this.innerFaces[y].Weight();
+		}
+	}
 }
