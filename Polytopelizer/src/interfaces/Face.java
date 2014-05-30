@@ -34,7 +34,10 @@ public interface Face {
     //from the actual tree construct a caterpillar
     public void balance();
     //balance the Tree
-    public int Weight(); // view the weight
-    public void addSpineWeight(int dif); //add the dif to the weight from all node spine
-    
+    public int vSpine(); //view the index of spine child
+    public long Weight(); // view the weight
+    public void addSpineWeight(long dif); //add the dif to the weight from all node spine
+    public long vShift();//view the shift
+	public void mShift(long shift);//modifies the shift
+	
 }

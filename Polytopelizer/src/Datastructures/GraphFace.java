@@ -8,9 +8,10 @@ public class GraphFace implements Face {
     private Point2D[] points;
     private Face[] innerFaces;
     private Face father;
-    private int weight;//have to modify to bigintenger
+    private long weight;
     private int spineInd; //gives the index from the child that is a spine node
-
+    private long shift;
+    
     // Create a new Outer Face f0 without any smaller Faces.
     public GraphFace(Point2D p1, Point2D p2, Point2D p3) {
         this.points = new Point2D[3];
@@ -144,11 +145,11 @@ public class GraphFace implements Face {
     	}
     }
  
-    public int Weight(){
+    public long Weight(){
     	return this.weight;
     }
    
-    public void addSpineWeight(int dif){
+    public void addSpineWeight(long dif){
     	if (isSmallestFace()){
 			this.weight = this.weight + dif;
     		return;
@@ -175,11 +176,23 @@ public class GraphFace implements Face {
 				y = z;
 				z = temp;
 			}
-			int dif = this.innerFaces[z].Weight() - this.innerFaces[y].Weight();
+			long dif = this.innerFaces[z].Weight() - this.innerFaces[y].Weight();
 			if (dif != 0)
 				this.innerFaces[y].addSpineWeight(dif);
 			
 			this.weight = this.innerFaces[x].Weight() + 2*this.innerFaces[y].Weight();
 		}
+	}
+	
+	public long vShift(){
+		return this.shift;
+	}
+	
+	public void mShift(long shift){
+		this.shift = shift;
+	}
+	
+	public int vSpine(){
+		return this.spineInd;
 	}
 }

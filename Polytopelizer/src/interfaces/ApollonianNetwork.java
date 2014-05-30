@@ -13,5 +13,7 @@ public interface ApollonianNetwork {
     // and True is returned.
     public Face getFaces();
     // Returns the Set of all (Sub-)Faces.
+    public long getNPoints();
+    //Returns the Number of points in the Network
     
 }
