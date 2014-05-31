@@ -6,7 +6,7 @@ import interfaces.*;
 
 public class Algorithm {
 
-    public static StackedPolytope calculateStackedPolytope1(ApollonianNetwork aN) {
+    public static StackedPolytope calculateStackedPolytope1(ApollonianNetwork aN){
 
         long x,y,z;
         int i;
@@ -25,27 +25,38 @@ public class Algorithm {
         //calculate the shift
         calcShift(f);
         
-        //round and lift
+        //round 
        
-        long pert = 240;
-        
+        double pert = 240*n;//n^(3/2)
+                
+                
+//ver como funciona o Math.round
         
         // Calculate the first 3 Points of the StackedPolytope.
         Point2D[] points = f.getPoints();
         for (i=0; i <3; i++){
-        	x = Math.round(points[i].x());
-            y= Math.round(points[i].y());
+        	x = Math.round(points[i].x()*pert);
+            y = Math.round(points[i].y()*pert);
             z = 0;
             p[i] = new Point3D(x,y,z);
 		}
-        
-        
+                
         // Create the StackedPolytope. (It has just one simple Triangle.)
         StackedPolytope sP = new StackedPolytopeImpl(p[0], p[1], p[2]);
-
         // Now compute the StackedPolytope on top of sP.
         face2stackedPolytope(f, sP);
-
+        
+        //lift
+        double pert_z =3*n;
+        
+        //for each 
+        
+        
+        
+       
+        
+       
+        
         return sP;
    
     }
