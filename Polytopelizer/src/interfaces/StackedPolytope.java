@@ -23,4 +23,9 @@ public interface StackedPolytope {
     public Point3D[] getPoints();
     // Returns the 3 Vertex-Points of this Triangle. The first Point ist the Point that was
     // stacked on top of his base Triangle.
+    public void mPoints(Point3D p1, Point3D p2, Point3D p3);
+    //modifies the points
+    
+    public long vShift();//view the shift
+	public void mShift(long shift);//modifies the shift
 }

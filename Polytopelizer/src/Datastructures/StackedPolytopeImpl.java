@@ -8,7 +8,8 @@ public class StackedPolytopeImpl implements StackedPolytope {
     private Point3D[] points;
     private StackedPolytope[] stackedTriangles;
     private StackedPolytope father;
-
+    private long shift;
+    
     // Create a new simple Triangle.
     public StackedPolytopeImpl(Point3D p1, Point3D p2, Point3D p3) {
         this.points = new Point3D[3];
@@ -16,6 +17,7 @@ public class StackedPolytopeImpl implements StackedPolytope {
         this.points[1] = p2;
         this.points[2] = p3;
         this.stackedTriangles = null;
+        this.shift = 0;
     }
 
     public void merge() {
@@ -68,6 +70,13 @@ public class StackedPolytopeImpl implements StackedPolytope {
         return this.points;
     }
 
+    public void mPoints(Point3D p1, Point3D p2, Point3D p3) {
+    	this.points[0] = p1;
+        this.points[1] = p2;
+        this.points[2] = p3;
+    }
+
+    
     public String toString() {
         String result = "";
         if (father == null)
@@ -79,5 +88,13 @@ public class StackedPolytopeImpl implements StackedPolytope {
         }
         return result;
     }
-
+	
+    public long vShift(){
+		return this.shift;
+	}
+	
+	public void mShift(long shift){
+		this.shift = shift;
+	}
+    
 }
