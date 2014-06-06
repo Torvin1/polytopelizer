@@ -67,6 +67,7 @@ public class InputPanel extends JPanel implements MouseListener, MouseMotionList
 
     /*
      * event to add a new point to the network
+     * clears the action stack so no old points can be insterted
      */
 
     @Override
@@ -74,7 +75,7 @@ public class InputPanel extends JPanel implements MouseListener, MouseMotionList
 
         InputFrame.aN.addNode(e.getX(), e.getY());
         InputFrame.aN_points.add(new Point2D(e.getX(), e.getY()));
-//        System.out.printf("clicked @ %d , %d \n",e.getX(),e.getY());
+        InputFrame.actionstack.clear();
         repaint();
     }
     

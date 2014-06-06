@@ -3,6 +3,7 @@ package Input;
 
 /*#################### imports ##############################################*/
 
+import java.math.BigInteger;
 import java.util.LinkedList;
 
 import Geometry.Point2D;
@@ -28,8 +29,9 @@ public class InputFrame{
 
     public static ApollonianNetwork aN;
     public static LinkedList<Point2D> aN_points;
-    public final static int offsetX = 250;
-    public final static int offsetY = 50;
+    public static LinkedList<Point2D> actionstack;
+    public final static BigInteger offsetX = 250;
+    public final static BigInteger offsetY = 50;
     
 /*###########################constructor ####################################*/
 
@@ -47,6 +49,7 @@ public class InputFrame{
     aN_points.add(new Point2D(500+offsetX,500+offsetY));
     aN_points.add(new Point2D(250+offsetX,67+offsetY));
     
+    actionstack = new LinkedList<Point2D>();
 //  Frame to work in
     JFrame inputframe = new JFrame(name);
 //  Close Button 
@@ -76,6 +79,7 @@ public class InputFrame{
 }
 
 /*#######################main to test it ####################################*/
+    
 
 public static void main(String[] args) 
 	{
@@ -88,4 +92,7 @@ public static void main(String[] args)
 		}
 	});
 }
+
+/*######################### method ########################################*/
+
 }
