@@ -42,10 +42,12 @@ public class InputFrameMenuBar extends JMenuBar {
 		this.add(file);
 		JMenu edit = new JMenu("Edit");
 		this.add(edit);
-		JMenuItem undo = new JMenuItem("Undo");
-		JMenuItem redo = new JMenuItem("Redo");
+		JMenuItem undo = new JMenuItem("undo");
+		JMenuItem redo = new JMenuItem("redo");
+		JMenuItem refresh = new JMenuItem("refresh");
 		edit.add(undo);
 		edit.add(redo);
+		edit.add(refresh);
 
 		load.addActionListener(new ActionListener() {
 
@@ -67,13 +69,22 @@ public class InputFrameMenuBar extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Point2D x = null;
 				if (InputFrame.aN_points.size() > 3) {
-					Point2D x = InputFrame.aN_points.removeLast();
-					InputFrame.actionstack.add(x);
-				} else {
-					System.out.println("No points available to be removed.");
-				}
+					try {
+						x = InputFrame.aN_points.removeLast();
+					} catch (Exception e2) {
+						System.out
+								.println("No points available to be removed.");
+						return;
+					}
 
+					InputFrame.actionstack.add(x);
+					InputFrame.aN.removeNode(x.x(), x.y());
+					repaint();
+				}else{
+					return;
+				}
 			}
 		});
 
@@ -81,14 +92,16 @@ public class InputFrameMenuBar extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (InputFrame.actionstack.size() > 0) {
-					Point2D x = InputFrame.actionstack.removeLast();
-					InputFrame.aN_points.add(x);
-					repaint();
-				} else {
-					System.out.println("No points available to be reinserted.");
-				}
+				Point2D x = null;
+				try {
+					x = InputFrame.actionstack.removeLast();
+				} catch (Exception e2) {
 
+					System.out.println("No points available to be reinserted.");
+					return;
+				}
+				InputFrame.aN_points.add(x);
+				InputFrame.aN.addNode(x.x(), x.y());
 			}
 		});
 
@@ -108,10 +121,21 @@ public class InputFrameMenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+
 				Algorithm.calculateStackedPolytope2(InputFrame.aN);
 				// TODO Output here
 			}
 		});
+
+		refresh.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("wird Aufgerufen.");
+				repaint();
+			}
+		});
+
 	}
 
 	/* ############################# methods ################################## */

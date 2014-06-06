@@ -30,8 +30,8 @@ public class InputFrame{
     public static ApollonianNetwork aN;
     public static LinkedList<Point2D> aN_points;
     public static LinkedList<Point2D> actionstack;
-    public final static BigInteger offsetX = 250;
-    public final static BigInteger offsetY = 50;
+    public final static int offsetX = 250;
+    public final static int offsetY = 50;
     
 /*###########################constructor ####################################*/
 
@@ -42,7 +42,8 @@ public class InputFrame{
  * 
  */
     public static void CreateAndShowGUI(String name) 
-{
+{	
+    // Creating the basic storage for Point	
     aN = new ApollNetwork(new Point2D(0+offsetX,500+offsetY), new Point2D(500+offsetX,500+offsetY), new Point2D(250+offsetX,67+offsetY));
     aN_points = new LinkedList<Point2D>();
     aN_points.add(new Point2D(0+offsetX,500+offsetY));
@@ -56,8 +57,6 @@ public class InputFrame{
     inputframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
 //  set title 
-
-
 //  adding elements to the frame
 //  top menubar
     inputframe.setJMenuBar(new InputFrameMenuBar());

@@ -19,12 +19,12 @@ public class DrawLayerUI extends LayerUI<JComponent> {
         // draws the components
         super.paint(g, c);
         // creates an new graphic in the drawing layer
-        System.out.println("ich werde aufgerufen.");
+//        System.out.println("ich werde aufgerufen.");
         
         Graphics2D g2 = (Graphics2D) g.create();
 
         // paints the network into the graphic
-
+        // TODO add Draw list
         paintApollonianNetwork(g2, InputFrame.aN);
         // frees the resources after drawing
         g2.dispose();
@@ -44,7 +44,8 @@ public class DrawLayerUI extends LayerUI<JComponent> {
             paintFace(g, smallestfaces.get(i));
         }      
     }
-
+    
+//    draws the edges of the face on the drawing layer
     private void paintFace(Graphics2D g, Face f) {
         for (int i = 0; i < f.getPoints().length; i++) {
             g.draw(new Line2D.Double(f.getPoints()[i].x(),
