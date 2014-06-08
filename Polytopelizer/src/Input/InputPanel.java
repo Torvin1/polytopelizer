@@ -7,12 +7,11 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-import Geometry.Point2D;
+import Geometry.PointDecimal;
 
 /*
  * 
@@ -73,8 +72,8 @@ public class InputPanel extends JPanel implements MouseListener, MouseMotionList
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        InputFrame.aN.addNode(e.getX(), e.getY());
-        InputFrame.aN_points.add(new Point2D(e.getX(), e.getY()));
+        InputFrame.aN.addNode(new PointDecimal(e.getX(), e.getY()));
+        InputFrame.aN_points.add(new PointDecimal(e.getX(), e.getY()));
         InputFrame.actionstack.clear();
         repaint();
     }

@@ -1,30 +1,32 @@
 package Datastructures;
 
+import java.math.BigInteger;
+
 import interfaces.StackedPolytope;
-import Geometry.Point3D;
+import Geometry.PointInteger;
 
 public class StackedPolytopeImpl implements StackedPolytope {
 
-    private Point3D[] points;
+    private PointInteger[] points;
     private StackedPolytope[] stackedTriangles;
     private StackedPolytope father;
-    private long shift;
+    private BigInteger shift;
     
     // Create a new simple Triangle.
-    public StackedPolytopeImpl(Point3D p1, Point3D p2, Point3D p3) {
-        this.points = new Point3D[3];
+    public StackedPolytopeImpl(PointInteger p1, PointInteger p2, PointInteger p3) {
+        this.points = new PointInteger[3];
         this.points[0] = p1;
         this.points[1] = p2;
         this.points[2] = p3;
         this.stackedTriangles = null;
-        this.shift = 0;
+        this.shift = BigInteger.ZERO;
     }
 
     public void merge() {
         this.stackedTriangles = null;
     }
 
-    public void divide(Point3D p) {
+    public void divide(PointInteger p) {
         if (!isBoundary())
             return;
         StackedPolytopeImpl f1 = new StackedPolytopeImpl(p, points[0],
@@ -66,11 +68,11 @@ public class StackedPolytopeImpl implements StackedPolytope {
         return this.father;
     }
 
-    public Point3D[] getPoints() {
+    public PointInteger[] getPoints() {
         return this.points;
     }
 
-    public void mPoints(Point3D p1, Point3D p2, Point3D p3) {
+    public void mPoints(PointInteger p1, PointInteger p2, PointInteger p3) {
     	this.points[0] = p1;
         this.points[1] = p2;
         this.points[2] = p3;
@@ -89,11 +91,11 @@ public class StackedPolytopeImpl implements StackedPolytope {
         return result;
     }
 	
-    public long vShift(){
+    public BigInteger vShift(){
 		return this.shift;
 	}
 	
-	public void mShift(long shift){
+	public void mShift(BigInteger shift){
 		this.shift = shift;
 	}
     

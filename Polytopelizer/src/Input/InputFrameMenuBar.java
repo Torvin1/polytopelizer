@@ -8,7 +8,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import Algorithm.Algorithm;
-import Geometry.Point2D;
+import Geometry.PointDecimal;
 
 @SuppressWarnings("serial")
 public class InputFrameMenuBar extends JMenuBar {
@@ -69,7 +69,7 @@ public class InputFrameMenuBar extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Point2D x = null;
+			    PointDecimal x = null;
 				if (InputFrame.aN_points.size() > 3) {
 					try {
 						x = InputFrame.aN_points.removeLast();
@@ -80,7 +80,7 @@ public class InputFrameMenuBar extends JMenuBar {
 					}
 
 					InputFrame.actionstack.add(x);
-					InputFrame.aN.removeNode(x.x(), x.y());
+					InputFrame.aN.removeNode(x);
 					repaint();
 				}else{
 					return;
@@ -92,7 +92,7 @@ public class InputFrameMenuBar extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Point2D x = null;
+			    PointDecimal x = null;
 				try {
 					x = InputFrame.actionstack.removeLast();
 				} catch (Exception e2) {
@@ -101,7 +101,7 @@ public class InputFrameMenuBar extends JMenuBar {
 					return;
 				}
 				InputFrame.aN_points.add(x);
-				InputFrame.aN.addNode(x.x(), x.y());
+				InputFrame.aN.addNode(x);
 			}
 		});
 

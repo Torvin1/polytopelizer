@@ -1,5 +1,7 @@
 package Algorithm;
 
+import java.math.BigInteger;
+
 import Datastructures.*;
 import Geometry.*;
 import interfaces.*;
@@ -12,16 +14,19 @@ public class DummyAlgorithm {
         Face f = aN.getFaces();
 
         // Calculate the first 3 Points of the StackedPolytope.
-        Point2D[] points = f.getPoints();
-        Point3D p1 = new Point3D(Math.round(points[0].x()) * 10,
-                Math.round(points[0].y()) * 10, Math.round(points[0].x())
-                        + Math.round(points[0].y()));
-        Point3D p2 = new Point3D(Math.round(points[1].x()) * 10,
-                Math.round(points[1].y()) * 10, Math.round(points[1].x())
-                        + Math.round(points[1].y()));
-        Point3D p3 = new Point3D(Math.round(points[2].x()) * 10,
-                Math.round(points[2].y()) * 10, Math.round(points[2].x())
-                        + Math.round(points[2].y()));
+        PointDecimal[] points = f.getPoints();
+        PointInteger p1 = new PointInteger(points[0].x().toBigInteger()
+                .multiply(BigInteger.TEN), points[0].y().toBigInteger()
+                .multiply(BigInteger.TEN), points[0].x().toBigInteger()
+                .add(points[0].y().toBigInteger()));
+        PointInteger p2 = new PointInteger(points[1].x().toBigInteger()
+                .multiply(BigInteger.TEN), points[1].y().toBigInteger()
+                .multiply(BigInteger.TEN), points[1].x().toBigInteger()
+                .add(points[1].y().toBigInteger()));
+        PointInteger p3 = new PointInteger(points[2].x().toBigInteger()
+                .multiply(BigInteger.TEN), points[2].y().toBigInteger()
+                .multiply(BigInteger.TEN), points[2].x().toBigInteger()
+                .add(points[2].y().toBigInteger()));
 
         // Create the StackedPolytope. (It has just one simple Triangle.)
         StackedPolytope sP = new StackedPolytopeImpl(p1, p2, p3);
@@ -41,10 +46,11 @@ public class DummyAlgorithm {
         // If the Face is not a smallest Face, we compute the rest recursively.
         if (!f.isSmallestFace()) {
             Face[] f_neu = f.smallerFaces();
-            Point2D p = f_neu[0].getPoints()[0];
-            Point3D p3D = new Point3D(Math.round(p.x()) * 10,
-                    Math.round(p.y()) * 10, Math.round(p.x())
-                            + Math.round(p.y()));
+            PointDecimal p = f_neu[0].getPoints()[0];
+            PointInteger p3D = new PointInteger(p.x().toBigInteger()
+                    .multiply(BigInteger.TEN), p.y().toBigInteger()
+                    .multiply(BigInteger.TEN), p.x().toBigInteger()
+                    .add(p.y().toBigInteger()));
             sP.divide(p3D);
             StackedPolytope[] sP_neu = sP.smallerPolytopes();
             face2stackedPolytope(f_neu[0], sP_neu[0]);
