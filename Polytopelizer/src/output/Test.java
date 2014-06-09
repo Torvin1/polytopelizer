@@ -1,4 +1,4 @@
-package Output;
+package output;
 
 import interfaces.*;
 import Algorithm.*;
