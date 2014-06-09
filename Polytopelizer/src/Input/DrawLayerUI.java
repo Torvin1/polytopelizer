@@ -5,7 +5,7 @@ import interfaces.Face;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.Line2D;
+//import java.awt.geom.Line2D;
 import java.util.LinkedList;
 
 import javax.swing.JComponent;
@@ -48,9 +48,9 @@ public class DrawLayerUI extends LayerUI<JComponent> {
 //    draws the edges of the face on the drawing layer
     private void paintFace(Graphics2D g, Face f) {
         for (int i = 0; i < f.getPoints().length; i++) {
-            g.draw(new Line2D.Double(f.getPoints()[i].x(),
-                    f.getPoints()[i].y(), f.getPoints()[(i + 1) % 3].x(), f
-                            .getPoints()[(i + 1) % 3].y()));        
+//            g.draw(new Line2D.Double(f.getPoints()[i].x(),
+//                    f.getPoints()[i].y(), f.getPoints()[(i + 1) % 3].x(), f
+//                            .getPoints()[(i + 1) % 3].y()));        
         }
     }
 

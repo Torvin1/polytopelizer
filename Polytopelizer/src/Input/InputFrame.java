@@ -2,7 +2,7 @@ package Input;
 
 /*#################### imports ##############################################*/
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.LinkedList;
 
 import Geometry.PointDecimal;
@@ -31,8 +31,8 @@ public class InputFrame {
     public static ApollonianNetwork aN;
     public static LinkedList<PointDecimal> aN_points;
     public static LinkedList<PointDecimal> actionstack;
-    public final static int offsetX = 250;
-    public final static int offsetY = 50;
+    public final static BigDecimal offsetX = new BigDecimal(250);
+    public final static BigDecimal offsetY = new BigDecimal(50);
 
     /*
      * ###########################constructor
@@ -50,13 +50,13 @@ public class InputFrame {
      */
     public static void CreateAndShowGUI(String name) {
         // Creating the basic storage for Point
-        aN = new ApollNetwork(new PointDecimal(0 + offsetX, 500 + offsetY),
-                new PointDecimal(500 + offsetX, 500 + offsetY),
-                new PointDecimal(250 + offsetX, 67 + offsetY));
+        aN = new ApollNetwork(new PointDecimal(new BigDecimal(0).add(offsetX), new BigDecimal(500).add(offsetY)),
+                new PointDecimal(new BigDecimal(500).add(offsetX), new BigDecimal(500).add(offsetY)),
+                new PointDecimal(new BigDecimal(250).add(offsetX), new BigDecimal(67).add(offsetY)));
         aN_points = new LinkedList<PointDecimal>();
-        aN_points.add(new PointDecimal(0 + offsetX, 500 + offsetY));
-        aN_points.add(new PointDecimal(500 + offsetX, 500 + offsetY));
-        aN_points.add(new PointDecimal(250 + offsetX, 67 + offsetY));
+        aN_points.add(new PointDecimal(new BigDecimal(0).add(offsetX), new BigDecimal(500).add(offsetY)));
+        aN_points.add(new PointDecimal(new BigDecimal(500).add(offsetX), new BigDecimal(500).add(offsetY)));
+        aN_points.add(new PointDecimal(new BigDecimal(250).add(offsetX), new BigDecimal(67).add(offsetY)));
 
         actionstack = new LinkedList<PointDecimal>();
         // Frame to work in

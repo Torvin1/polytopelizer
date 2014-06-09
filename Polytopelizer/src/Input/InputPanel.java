@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.math.BigDecimal;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -72,8 +73,8 @@ public class InputPanel extends JPanel implements MouseListener, MouseMotionList
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        InputFrame.aN.addNode(new PointDecimal(e.getX(), e.getY()));
-        InputFrame.aN_points.add(new PointDecimal(e.getX(), e.getY()));
+        InputFrame.aN.addNode(new PointDecimal(new BigDecimal(e.getX()), new BigDecimal(e.getY())));
+        InputFrame.aN_points.add(new PointDecimal(new BigDecimal(e.getX()), new BigDecimal(e.getY())));
         InputFrame.actionstack.clear();
         repaint();
     }
