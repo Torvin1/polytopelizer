@@ -13,14 +13,14 @@ public class DummyAlgorithm {
 
         // Calculate the first 3 Points of the StackedPolytope.
         Point2D[] points = f.getPoints();
-        Point3D p1 = new Point3D(Math.round(points[0].x()) * 10,
-                Math.round(points[0].y()) * 10, Math.round(points[0].x())
+        Point3D p1 = new Point3D(Math.round(points[0].x()) * 2,
+                Math.round(points[0].y()) * 2, Math.round(points[0].x())
                         + Math.round(points[0].y()));
-        Point3D p2 = new Point3D(Math.round(points[1].x()) * 10,
-                Math.round(points[1].y()) * 10, Math.round(points[1].x())
+        Point3D p2 = new Point3D(Math.round(points[1].x()) * 2,
+                Math.round(points[1].y()) * 2, Math.round(points[1].x())
                         + Math.round(points[1].y()));
-        Point3D p3 = new Point3D(Math.round(points[2].x()) * 10,
-                Math.round(points[2].y()) * 10, Math.round(points[2].x())
+        Point3D p3 = new Point3D(Math.round(points[2].x()) * 2,
+                Math.round(points[2].y()) * 2, Math.round(points[2].x())
                         + Math.round(points[2].y()));
 
         // Create the StackedPolytope. (It has just one simple Triangle.)
