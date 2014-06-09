@@ -1,36 +1,49 @@
 package Datastructures;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import Geometry.*;
 import interfaces.*;
 
 public class ApollNetwork implements ApollonianNetwork {
 
     private Face faces;
+    private int nPoints;// number of points
 
     // Create a new Apollonian Network with 3 Vertices and 3 Edges.
-    public ApollNetwork(Point2D p1, Point2D p2, Point2D p3) {
+    public ApollNetwork(PointDecimal p1, PointDecimal p2, PointDecimal p3) {
         this.faces = new GraphFace(p1, p2, p3);
-    }
-    
-    public ApollNetwork(){
-        this(new Point2D(),new Point2D(0,100),new Point2D(50,75));
+        this.nPoints = 3;
     }
 
-    public boolean addNode(double x, double y) {
-        Point2D p = new Point2D(x, y);
+    public ApollNetwork() {
+        this(new PointDecimal(), new PointDecimal(BigDecimal.ZERO,
+                new BigDecimal("100")), new PointDecimal(new BigDecimal("100"),
+                BigDecimal.ZERO));
+    }
+
+    public boolean addNode(PointDecimal p) {
         Face smallestFace = faces.smallestFaceforPoint(p);
-        if (smallestFace != null)
+        if (smallestFace != null) {
             smallestFace.divide(p);
+            nPoints++;
+        }
         return smallestFace != null;
 
     }
 
-    public boolean removeNode(double x, double y) {
-        Point2D p = new Point2D(x,y);
+    public boolean removeNode(PointDecimal p) {
         Face smallestFace = faces.smallestFaceforPoint(p);
-        if (smallestFace!=null && smallestFace!= faces)
+        if (smallestFace != null && smallestFace != faces) {
             smallestFace.outerFace().merge();
-        return smallestFace!=null && smallestFace!= faces;
+            nPoints--;
+        }
+        return smallestFace != null && smallestFace != faces;
+    }
+
+    public int getNPoints() {
+        return nPoints;
     }
 
     public Face getFaces() {

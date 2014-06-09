@@ -1,5 +1,7 @@
 package interfaces;
-import Geometry.Point3D;
+import java.math.BigInteger;
+
+import Geometry.PointInteger;
 
 public interface StackedPolytope {
     
@@ -7,7 +9,7 @@ public interface StackedPolytope {
     public void merge();
     // This Triangle becomes a Boundary, that means alle Polytopes stacked ontop of this,
     // are deleted.
-    public void divide(Point3D p);
+    public void divide(PointInteger p);
     // If this Triangle is not a Boundary, nothing happens. Otherwise a Tetraeder is stacked
     // ontop of this Polytope with the new Point p.
     public int size();
@@ -20,7 +22,12 @@ public interface StackedPolytope {
     public StackedPolytope baseTriangle();
     // Returns the Triangle on which this Polytope is stacked. Returns null, iff there is
     // no such Polytope.
-    public Point3D[] getPoints();
+    public PointInteger[] getPoints();
     // Returns the 3 Vertex-Points of this Triangle. The first Point ist the Point that was
     // stacked on top of his base Triangle.
+    public void mPoints(PointInteger p1, PointInteger p2, PointInteger p3);
+    //modifies the points
+    
+    public BigInteger vShift();//view the shift
+	public void mShift(BigInteger shift);//modifies the shift
 }
