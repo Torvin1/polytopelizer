@@ -2,6 +2,7 @@ package Input;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -74,8 +75,7 @@ public class InputFrameMenuBar extends JMenuBar {
 					try {
 						x = InputFrame.aN_points.removeLast();
 					} catch (Exception e2) {
-						System.out
-								.println("No points available to be removed.");
+						System.out.println("No points available to be removed.");
 						return;
 					}
 

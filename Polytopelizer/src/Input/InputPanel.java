@@ -23,25 +23,12 @@ import Geometry.PointDecimal;
 @SuppressWarnings("serial")
 public class InputPanel extends JPanel implements MouseListener, MouseMotionListener , MouseWheelListener{
 
-    /*
-     * ########################### attributes
-     * ####################################
-     */
-    // TODO replace storage with appollian network
-//    private static ArrayList<Point2D> storage;
-
-    /*
-     * ###########################constructor
-     * ####################################
-     */
+/*########################### attributes ####################################*/
+/*###########################constructor####################################*/
 
     public InputPanel() {
         // creates a JFrame
         super();
-//        InputPanel.storage = new ArrayList<Point2D>();
-//        InputPanel.storage.add(new Point2D(7, 550));
-//        InputPanel.storage.add(new Point2D(1000, 7));
-        // propreties of the JFrame
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         this.setBackground(Color.WHITE);
         // default value
@@ -55,15 +42,7 @@ public class InputPanel extends JPanel implements MouseListener, MouseMotionList
         addMouseListener(this);
     }
 
-    /*
-     * ############################ methods
-     * ######################################
-     */
-
-//    public static ArrayList<Point2D> getStorage() {
-//
-//        return storage;
-//    }
+/*############################ methods ######################################*/
 
     /*
      * event to add a new point to the network
