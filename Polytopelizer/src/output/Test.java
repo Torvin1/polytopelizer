@@ -7,30 +7,8 @@ import Geometry.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import javax.swing.JFrame;
 
 import de.jreality.geometry.IndexedFaceSetFactory;
-import de.jreality.plugin.JRViewer;
-import de.jreality.plugin.JRViewer.ContentType;
-import de.jreality.jogl.Viewer;
-import de.jreality.math.MatrixBuilder;
-import de.jreality.scene.Appearance;
-import de.jreality.scene.Camera;
-import de.jreality.scene.DirectionalLight;
-import de.jreality.scene.IndexedFaceSet;
-import de.jreality.scene.Light;
-import de.jreality.scene.SceneGraphComponent;
-import de.jreality.scene.SceneGraphPath;
-import de.jreality.shader.CommonAttributes;
-import de.jreality.tools.DraggingTool;
-import de.jreality.tools.RotateTool;
-import de.jreality.tools.ScaleTool;
-import de.jreality.toolsystem.ToolSystem;
-import de.jreality.util.RenderTrigger;
 
 public class Test {
     static int z = 0;
@@ -60,23 +38,23 @@ public class Test {
         
         IndexedFaceSetFactory ifsf = new IndexedFaceSetFactory();
         
-//        double [][] vertices5  = new double[][] {
-//                {0, 0, 0}, {2, 0, 0}, {2, 2, 0}, {0, 2, 0}, {1, 1, 1}
-//              };
-//              
-//        int [][] faceIndices5 = new int [][] {
-//                {0, 1, 2, 3}, {0, 1, 4}, {1, 2, 4}, {2, 3, 4}, {0, 3, 4} 
-//              };
+        double [][] vertices5  = new double[][] {
+                {0, 0, 0}, {2, 0, 0}, {2, 2, 0}, {0, 2, 0}, {1, 1, 1}
+              };
               
-//        ifsf.setVertexCount( vertices5.length );
-//        ifsf.setVertexCoordinates( vertices5 );
-//        ifsf.setFaceCount( faceIndices5.length);
-//        ifsf.setFaceIndices( faceIndices5 );
+        int [][] faceIndices5 = new int [][] {
+                {0, 1, 2, 3}, {0, 1, 4}, {1, 2, 4}, {2, 3, 4}, {0, 3, 4} 
+              };
+              
+        ifsf.setVertexCount( vertices5.length );
+        ifsf.setVertexCoordinates( vertices5 );
+        ifsf.setFaceCount( faceIndices5.length);
+        ifsf.setFaceIndices( faceIndices5 );
         
-        ifsf.setVertexCount( vertices2.length );
-        ifsf.setVertexCoordinates( vertices2 );
-        ifsf.setFaceCount( faceIndices2.length );
-        ifsf.setFaceIndices( faceIndices2 );
+//        ifsf.setVertexCount( vertices2.length );
+//        ifsf.setVertexCoordinates( vertices2 );
+//        ifsf.setFaceCount( faceIndices2.length );
+//        ifsf.setFaceIndices( faceIndices2 );
         
         ifsf.setGenerateEdgesFromFaces( true );
         ifsf.setGenerateFaceNormals( true );
@@ -86,6 +64,7 @@ public class Test {
         new ViewerFrame(ifsf.getIndexedFaceSet());
     }
 
+    @SuppressWarnings("unused")
     private static String arrayToString(int[][] a) {
         String blakeks = "";
         for (int i = 0; i < a.length; i++) {
@@ -110,6 +89,7 @@ public class Test {
         return blakeks;
     }
 
+    @SuppressWarnings("unused")
     private static String arrayToString(double[][] a) {
         String blakeks = "";
         for (int i = 0; i < a.length; i++) {
