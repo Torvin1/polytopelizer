@@ -20,7 +20,6 @@ public class DrawLayerUI extends LayerUI<JComponent> {
         // draws the components
         super.paint(g, c);
         // creates an new graphic in the drawing layer
-//        System.out.println("ich werde aufgerufen.");
         
         Graphics2D g2 = (Graphics2D) g.create();
 

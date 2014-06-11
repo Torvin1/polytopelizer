@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import de.jreality.geometry.IndexedFaceSetFactory;
 
-public class Test {
+public class Test {/*
     static int z = 0;
     public static void main(String[] args) {
         ApollonianNetwork aN = new ApollNetwork(new PointDecimal(
@@ -122,5 +122,5 @@ public class Test {
             ret[i] = al.get(i);
         }
         return ret;
-    }
+    }*/
 }

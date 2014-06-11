@@ -74,13 +74,17 @@ public class InputFrameMenuBar extends JMenuBar {
 				if (InputFrame.aN_points.size() > 3) {
 					try {
 						x = InputFrame.aN_points.removeLast();
+//						System.out.println(" Es wird der Punkt "+x+" aus aN_points entfernt.");
 					} catch (Exception e2) {
-						System.out.println("No points available to be removed.");
+//						System.out.println("No points available to be removed.");
 						return;
 					}
-
+                    
 					InputFrame.actionstack.add(x);
-					InputFrame.aN.removeNode(x);
+					if (!InputFrame.aN.removeNode(x)){
+//					    System.out.println("Node "+x+" wurde nicht entfernt.");
+					};
+					InputFrame.inputpanel.repaint();
 					InputFrame.inputpanel.revalidate();
 //					repaint();
 				}else{
@@ -132,7 +136,6 @@ public class InputFrameMenuBar extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("wird Aufgerufen.");
 				repaint();
 			}
 		});
