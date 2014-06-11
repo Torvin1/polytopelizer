@@ -6,6 +6,7 @@ import Datastructures.*;
 import Geometry.*;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 import de.jreality.geometry.IndexedFaceSetFactory;
@@ -19,6 +20,12 @@ public class Test {
                 BigDecimal.ZERO, BigDecimal.TEN));
         aN.addNode(new PointDecimal(new BigDecimal("2"), new BigDecimal("2")));
         StackedPolytope sP1 = DummyAlgorithm.calculateStackedPolytope1(aN);
+        
+//        StackedPolytope sP1 = new StackedPolytopeImpl(
+//                new PointInteger(new BigInteger("0"), new BigInteger("0"), new BigInteger("0")), 
+//                new PointInteger(new BigInteger("2"), new BigInteger("0"), new BigInteger("0")), 
+//                new PointInteger(new BigInteger("2"), new BigInteger("2"), new BigInteger("0")));
+//        sP1.divide(new PointInteger(new BigInteger("1"), new BigInteger("1"), new BigInteger("1")));
 
         ArrayList<ArrayList<Double>> vertices = new ArrayList<ArrayList<Double>>();
         ArrayList<ArrayList<Integer>> faceIndices = new ArrayList<ArrayList<Integer>>();
@@ -38,23 +45,10 @@ public class Test {
         
         IndexedFaceSetFactory ifsf = new IndexedFaceSetFactory();
         
-        double [][] vertices5  = new double[][] {
-                {0, 0, 0}, {2, 0, 0}, {2, 2, 0}, {0, 2, 0}, {1, 1, 1}
-              };
-              
-        int [][] faceIndices5 = new int [][] {
-                {0, 1, 2, 3}, {0, 1, 4}, {1, 2, 4}, {2, 3, 4}, {0, 3, 4} 
-              };
-              
-        ifsf.setVertexCount( vertices5.length );
-        ifsf.setVertexCoordinates( vertices5 );
-        ifsf.setFaceCount( faceIndices5.length);
-        ifsf.setFaceIndices( faceIndices5 );
-        
-//        ifsf.setVertexCount( vertices2.length );
-//        ifsf.setVertexCoordinates( vertices2 );
-//        ifsf.setFaceCount( faceIndices2.length );
-//        ifsf.setFaceIndices( faceIndices2 );
+        ifsf.setVertexCount( vertices2.length );
+        ifsf.setVertexCoordinates( vertices2 );
+        ifsf.setFaceCount( faceIndices2.length );
+        ifsf.setFaceIndices( faceIndices2 );
         
         ifsf.setGenerateEdgesFromFaces( true );
         ifsf.setGenerateFaceNormals( true );
