@@ -20,8 +20,7 @@ import Datastructures.ApollNetwork;
 /**
  * Core for the input
  * 
- */
-public class InputFrame {
+ */ class InputFrame {
 
     /*
      * ########################### attributes
@@ -29,6 +28,7 @@ public class InputFrame {
      */
 
     public static ApollonianNetwork aN;
+    public static InputPanel inputpanel;
     public static LinkedList<PointDecimal> aN_points;
     public static LinkedList<PointDecimal> actionstack;
     public final static BigDecimal offsetX = new BigDecimal(250);
@@ -69,7 +69,7 @@ public class InputFrame {
         // top menubar
         inputframe.setJMenuBar(new InputFrameMenuBar());
         // drawing area gets added
-        InputPanel inputpanel = new InputPanel();
+        inputpanel = new InputPanel();
 
         // inputframe.add(inputpanel); // simple mouse eventpanel
 
