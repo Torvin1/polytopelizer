@@ -35,9 +35,7 @@ public class ApollNetwork implements ApollonianNetwork {
 
     public boolean removeNode(PointDecimal p) {
         Face smallestFace = faces.smallestFaceforPoint(p);
-        System.out.println(smallestFace);
         if (smallestFace != null && smallestFace != faces) {
-            System.out.println("check");
             smallestFace.outerFace().merge();
             nPoints--;
         }

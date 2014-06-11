@@ -67,11 +67,6 @@ public class GraphFace implements Face {
 
     public Face smallestFaceforPoint(PointDecimal p) {
         if (isSmallestFace() || !hasPoint(p)) {
-            System.out.println(hasPoint(p));
-            System.out.println(p);
-            System.out.println(points[0]);
-            System.out.println(points[1]);
-            System.out.println(points[2]);
             return hasPoint(p) ? this : null;
         }
         if (innerFaces[0].hasPoint(p))
