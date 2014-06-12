@@ -14,18 +14,18 @@ import de.jreality.geometry.IndexedFaceSetFactory;
 public class Test {
     static int z = 0;
     public static void main(String[] args) {
-        ApollonianNetwork aN = new ApollNetwork(new PointDecimal(
-                BigDecimal.ZERO, BigDecimal.ZERO), new PointDecimal(
-                BigDecimal.TEN, BigDecimal.ZERO), new PointDecimal(
-                BigDecimal.ZERO, BigDecimal.TEN));
-        aN.addNode(new PointDecimal(new BigDecimal("2"), new BigDecimal("2")));
-        StackedPolytope sP1 = DummyAlgorithm.calculateStackedPolytope1(aN);
-        
-//        StackedPolytope sP1 = new StackedPolytopeImpl(
-//                new PointInteger(new BigInteger("0"), new BigInteger("0"), new BigInteger("0")), 
-//                new PointInteger(new BigInteger("2"), new BigInteger("0"), new BigInteger("0")), 
-//                new PointInteger(new BigInteger("2"), new BigInteger("2"), new BigInteger("0")));
-//        sP1.divide(new PointInteger(new BigInteger("1"), new BigInteger("1"), new BigInteger("1")));
+//        ApollonianNetwork aN = new ApollNetwork(new PointDecimal(
+//                BigDecimal.ZERO, BigDecimal.ZERO), new PointDecimal(
+//                BigDecimal.TEN, BigDecimal.ZERO), new PointDecimal(
+//                BigDecimal.ZERO, BigDecimal.TEN));
+//        aN.addNode(new PointDecimal(new BigDecimal("2"), new BigDecimal("2")));
+//        StackedPolytope sP1 = DummyAlgorithm.calculateStackedPolytope1(aN);
+//        
+        StackedPolytope sP1 = new StackedPolytopeImpl(
+                new PointInteger(new BigInteger("0"), new BigInteger("0"), new BigInteger("0")), 
+                new PointInteger(new BigInteger("2"), new BigInteger("0"), new BigInteger("0")), 
+                new PointInteger(new BigInteger("2"), new BigInteger("2"), new BigInteger("0")));
+        sP1.divide(new PointInteger(new BigInteger("1"), new BigInteger("1"), new BigInteger("1")));
 
         ArrayList<ArrayList<Double>> vertices = new ArrayList<ArrayList<Double>>();
         ArrayList<ArrayList<Integer>> faceIndices = new ArrayList<ArrayList<Integer>>();

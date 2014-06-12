@@ -54,7 +54,8 @@ public class InputFrameMenuBar extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO FileRead
+				// file browser ?
+			    // open file
 			}
 		});
 
@@ -76,17 +77,16 @@ public class InputFrameMenuBar extends JMenuBar {
 						x = InputFrame.aN_points.removeLast();
 //						System.out.println(" Es wird der Punkt "+x+" aus aN_points entfernt.");
 					} catch (Exception e2) {
-//						System.out.println("No points available to be removed.");
+						System.out.println("No points available to be removed.");
 						return;
 					}
                     
 					InputFrame.actionstack.add(x);
 					if (!InputFrame.aN.removeNode(x)){
-//					    System.out.println("Node "+x+" wurde nicht entfernt.");
+					    System.out.println("Node "+x+" wurde nicht entfernt.");
 					};
 					InputFrame.inputpanel.repaint();
 					InputFrame.inputpanel.revalidate();
-//					repaint();
 				}else{
 					return;
 				}
@@ -107,6 +107,8 @@ public class InputFrameMenuBar extends JMenuBar {
 				}
 				InputFrame.aN_points.add(x);
 				InputFrame.aN.addNode(x);
+				InputFrame.inputpanel.repaint();
+                InputFrame.inputpanel.revalidate();
 			}
 		});
 
