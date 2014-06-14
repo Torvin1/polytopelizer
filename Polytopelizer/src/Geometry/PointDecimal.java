@@ -43,4 +43,8 @@ public class PointDecimal {
     public String toString() {
         return "(" + x + "," + y + "," + z + ")";
     }
+    
+    public boolean equals(PointDecimal p){
+        return x.compareTo(p.x()) == 0 && y.compareTo(p.y()) == 0 && z.compareTo(p.z()) == 0;
+    }
 }

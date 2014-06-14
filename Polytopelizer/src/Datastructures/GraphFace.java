@@ -89,6 +89,8 @@ public class GraphFace implements Face {
     // If we need this test somewhere else, we should implement this Test in the
     // Geom-Class. Tell me, iff we have to.
     public boolean hasPoint(PointDecimal p) {
+        if (p.equals(points[0]) ||p.equals(points[1]) ||p.equals(points[2]))
+            return true;
         BigDecimal[] v0 = new BigDecimal[] { BigDecimal.ONE, p.x(), p.y() };
         BigDecimal[] v1 = new BigDecimal[] { BigDecimal.ONE, points[0].x(),
                 points[0].y() };
@@ -96,10 +98,6 @@ public class GraphFace implements Face {
                 points[1].y() };
         BigDecimal[] v3 = new BigDecimal[] { BigDecimal.ONE, points[2].x(),
                 points[2].y() };
-//        System.out.println(p);
-//        System.out.println(points[0]);
-//        System.out.println(points[1]);
-//        System.out.println(points[2]);
         try {
             BigDecimal faceDet = Geom.det(new BigDecimal[][] { v1, v2, v3 });
             BigDecimal det1 = Geom.det(new BigDecimal[][] { v0, v2, v3 });
