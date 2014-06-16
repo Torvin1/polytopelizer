@@ -21,6 +21,7 @@ public class InputFrameMenuBar extends JMenuBar {
         super();
         JMenu file = new JMenu("File");
 
+        JMenuItem neu = new JMenuItem("new"); 
         JMenuItem save = new JMenuItem("save");
         JMenuItem load = new JMenuItem("load");
         file.add(save);
@@ -38,11 +39,27 @@ public class InputFrameMenuBar extends JMenuBar {
         edit.add(undo);
         edit.add(redo);
         edit.add(refresh);
-
+        
+        
+        neu.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // file saved ? / closed 
+                // reset action stack 
+                // create new aN
+                // repaint
+            }
+        });
+        
         load.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                // file open 
+                // saved ?
+                // yes continue
+                // no ask for override 
                 // file browser ?
                 // open file
             }
@@ -52,6 +69,9 @@ public class InputFrameMenuBar extends JMenuBar {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                // file open? 
+                // yes ... save to file
+                // no .... give path to file + name
                 // TODO FileWrite
             }
         });
