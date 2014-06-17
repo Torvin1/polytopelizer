@@ -96,18 +96,14 @@ public class GraphFace implements Face {
                 points[1].y() };
         BigDecimal[] v3 = new BigDecimal[] { BigDecimal.ONE, points[2].x(),
                 points[2].y() };
-//        System.out.println(p);
-//        System.out.println(points[0]);
-//        System.out.println(points[1]);
-//        System.out.println(points[2]);
         try {
             BigDecimal faceDet = Geom.det(new BigDecimal[][] { v1, v2, v3 });
             BigDecimal det1 = Geom.det(new BigDecimal[][] { v0, v2, v3 });
             BigDecimal det2 = Geom.det(new BigDecimal[][] { v1, v0, v3 });
             BigDecimal det3 = Geom.det(new BigDecimal[][] { v1, v2, v0 });
-            boolean onSameSide = faceDet.multiply(det1).signum() > 0;
-            onSameSide = onSameSide && (faceDet.multiply(det2).signum() > 0);
-            onSameSide = onSameSide && (faceDet.multiply(det3).signum() > 0);
+            boolean onSameSide = faceDet.multiply(det1).signum() >= 0;
+            onSameSide = onSameSide && (faceDet.multiply(det2).signum() >= 0);
+            onSameSide = onSameSide && (faceDet.multiply(det3).signum() >= 0);
             return onSameSide;
         } catch (IllegalMatrixException e) {
             e.printStackTrace();

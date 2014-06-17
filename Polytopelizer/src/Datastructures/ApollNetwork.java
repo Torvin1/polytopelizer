@@ -24,6 +24,7 @@ public class ApollNetwork implements ApollonianNetwork {
 
     public boolean addNode(PointDecimal p) {
         Face smallestFace = faces.smallestFaceforPoint(p);
+        System.out.println(smallestFace);
         if (smallestFace != null) {
             smallestFace.divide(p);
             nPoints++;

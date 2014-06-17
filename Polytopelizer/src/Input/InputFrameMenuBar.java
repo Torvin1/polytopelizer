@@ -1,5 +1,7 @@
 package Input;
 
+import interfaces.StackedPolytope;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 //import java.math.BigDecimal;
@@ -10,138 +12,150 @@ import javax.swing.JMenuItem;
 
 import Algorithm.Algorithm;
 import Geometry.PointDecimal;
+import Output.Test;
 
 @SuppressWarnings("serial")
 public class InputFrameMenuBar extends JMenuBar {
 
-	/*
-	 * #################### attributes
-	 * ###########################################
-	 */
+/*#################### attributes ########################################### */
 
-	/*------------Menues---------------------------------------------------------*/
+/*###########################constructor ####################################*/
+    public InputFrameMenuBar() {
+        super();
+        JMenu file = new JMenu("File");
 
-	/*
-	 * ###########################constructor
-	 * ####################################
-	 */
-	public InputFrameMenuBar() {
-		super();
-		JMenu file = new JMenu("File");
-		// file.setMnemonic(KeyEvent.VK_A);
-		// file.getAccessibleContext().setAccessibleDescription(
-		// "The only menu in this program that has menu items");
+        JMenuItem neu = new JMenuItem("new"); 
+        JMenuItem save = new JMenuItem("save");
+        JMenuItem load = new JMenuItem("load");
+        file.add(save);
+        file.add(load);
+        JMenuItem end = new JMenuItem("end");
+        file.add(end);
+        JMenuItem calculate = new JMenuItem("calculate");
+        file.add(calculate);
+        this.add(file);
+        JMenu edit = new JMenu("Edit");
+        this.add(edit);
+        JMenuItem undo = new JMenuItem("undo");
+        JMenuItem redo = new JMenuItem("redo");
+        JMenuItem refresh = new JMenuItem("refresh");
+        edit.add(undo);
+        edit.add(redo);
+        edit.add(refresh);
+        
+        
+        neu.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // file saved ? / closed 
+                // reset action stack 
+                // create new aN
+                // repaint
+            }
+        });
+        
+        load.addActionListener(new ActionListener() {
 
-		JMenuItem save = new JMenuItem("save");
-		JMenuItem load = new JMenuItem("load");
-		file.add(save);
-		file.add(load);
-		JMenuItem end = new JMenuItem("end");
-		file.add(end);
-		JMenuItem calculate = new JMenuItem("calculate");
-		file.add(calculate);
-		this.add(file);
-		JMenu edit = new JMenu("Edit");
-		this.add(edit);
-		JMenuItem undo = new JMenuItem("undo");
-		JMenuItem redo = new JMenuItem("redo");
-		JMenuItem refresh = new JMenuItem("refresh");
-		edit.add(undo);
-		edit.add(redo);
-		edit.add(refresh);
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // file open 
+                // saved ?
+                // yes continue
+                // no ask for override 
+                // file browser ?
+                // open file
+            }
+        });
 
-		load.addActionListener(new ActionListener() {
+        save.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO FileRead
-			}
-		});
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // file open? 
+                // yes ... save to file
+                // no .... give path to file + name
+                // TODO FileWrite
+            }
+        });
 
-		save.addActionListener(new ActionListener() {
+        undo.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO FileWrite
-			}
-		});
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PointDecimal x = null;
+                if (InputFrame.aN_points.size() > 3) {
+                    try {
+                        x = InputFrame.aN_points.removeLast();
+                        //System.out.println(" Es wird der Punkt "+x+" aus aN_points entfernt.");
+                    } catch (Exception e2) {
+                        System.out.println("No points available to be removed.");
+                        return;
+                    }
+                    InputFrame.actionstack.add(x);
+                    if (!InputFrame.aN.removeNode(x)){
+                        System.out.println("Node "+x+" wurde nicht entfernt.");
+                    };
+                    InputFrame.inputpanel.repaint();
+                    InputFrame.inputpanel.revalidate();
+                }else{
+                    return;
+                }
+            }
+        });
 
-		undo.addActionListener(new ActionListener() {
+        redo.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			    PointDecimal x = null;
-				if (InputFrame.aN_points.size() > 3) {
-					try {
-						x = InputFrame.aN_points.removeLast();
-//						System.out.println(" Es wird der Punkt "+x+" aus aN_points entfernt.");
-					} catch (Exception e2) {
-//						System.out.println("No points available to be removed.");
-						return;
-					}
-                    
-					InputFrame.actionstack.add(x);
-					if (!InputFrame.aN.removeNode(x)){
-//					    System.out.println("Node "+x+" wurde nicht entfernt.");
-					};
-					InputFrame.inputpanel.repaint();
-					InputFrame.inputpanel.revalidate();
-//					repaint();
-				}else{
-					return;
-				}
-			}
-		});
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PointDecimal x = null;
+                try {
+                    x = InputFrame.actionstack.removeLast();
+                } catch (Exception e2) {
 
-		redo.addActionListener(new ActionListener() {
+                    System.out.println("No points available to be reinserted.");
+                    return;
+                }
+                InputFrame.aN_points.add(x);
+                InputFrame.aN.addNode(x);
+                InputFrame.inputpanel.repaint();
+                InputFrame.inputpanel.revalidate();
+            }
+        });
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			    PointDecimal x = null;
-				try {
-					x = InputFrame.actionstack.removeLast();
-				} catch (Exception e2) {
+        end.addActionListener(new ActionListener() {
 
-					System.out.println("No points available to be reinserted.");
-					return;
-				}
-				InputFrame.aN_points.add(x);
-				InputFrame.aN.addNode(x);
-			}
-		});
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO save me ?
+                setVisible(false);
+                System.exit(0);
 
-		end.addActionListener(new ActionListener() {
+            }
+        });
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO save me ?
-				setVisible(false);
-				System.exit(0);
+        calculate.addActionListener(new ActionListener() {
 
-			}
-		});
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
 
-		calculate.addActionListener(new ActionListener() {
+                StackedPolytope sp = Algorithm.calculateStackedPolytope1(InputFrame.aN);
+                // TODO Output here
+                Test.showPolytope(sp);
+            }
+        });
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+        refresh.addActionListener(new ActionListener() {
 
-				Algorithm.calculateStackedPolytope2(InputFrame.aN);
-				// TODO Output here
-			}
-		});
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                repaint();
+            }
+        });
 
-		refresh.addActionListener(new ActionListener() {
+    }
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				repaint();
-			}
-		});
-
-	}
-
-	/* ############################# methods ################################## */
+    /* ############################# methods ################################## */
 
 }

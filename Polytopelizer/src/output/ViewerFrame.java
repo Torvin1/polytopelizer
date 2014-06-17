@@ -1,4 +1,4 @@
-package output;
+package Output;
 
 import java.awt.Color;
 import java.awt.Component;
