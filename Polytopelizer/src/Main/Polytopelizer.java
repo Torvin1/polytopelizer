@@ -2,11 +2,11 @@ package Main;
 
 import java.math.BigDecimal;
 
+import output.Test;
 import interfaces.*;
 import Algorithm.*;
 import Datastructures.*;
 import Geometry.PointDecimal;
-import Output.Test;
 
 public class Polytopelizer {
 
