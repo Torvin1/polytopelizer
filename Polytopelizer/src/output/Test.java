@@ -1,4 +1,4 @@
-package output;
+package Output;
 
 import interfaces.*;
 import Algorithm.*;
@@ -13,20 +13,29 @@ import de.jreality.geometry.IndexedFaceSetFactory;
 
 public class Test {
     static int z = 0;
-    public static void main(String[] args) {
-//        ApollonianNetwork aN = new ApollNetwork(new PointDecimal(
-//                BigDecimal.ZERO, BigDecimal.ZERO), new PointDecimal(
-//                BigDecimal.TEN, BigDecimal.ZERO), new PointDecimal(
-//                BigDecimal.ZERO, BigDecimal.TEN));
-//        aN.addNode(new PointDecimal(new BigDecimal("2"), new BigDecimal("2")));
-//        StackedPolytope sP1 = DummyAlgorithm.calculateStackedPolytope1(aN);
-//        
-        StackedPolytope sP1 = new StackedPolytopeImpl(
-                new PointInteger(new BigInteger("0"), new BigInteger("0"), new BigInteger("0")), 
-                new PointInteger(new BigInteger("2"), new BigInteger("0"), new BigInteger("0")), 
-                new PointInteger(new BigInteger("2"), new BigInteger("2"), new BigInteger("0")));
-        sP1.divide(new PointInteger(new BigInteger("1"), new BigInteger("1"), new BigInteger("1")));
 
+    public static void main(String[] args) {
+        // ApollonianNetwork aN = new ApollNetwork(new PointDecimal(
+        // BigDecimal.ZERO, BigDecimal.ZERO), new PointDecimal(
+        // BigDecimal.TEN, BigDecimal.ZERO), new PointDecimal(
+        // BigDecimal.ZERO, BigDecimal.TEN));
+        // aN.addNode(new PointDecimal(new BigDecimal("2"), new
+        // BigDecimal("2")));
+        // StackedPolytope sP1 = Algorithm.calculateStackedPolytope1(aN);
+
+        StackedPolytope sP1 = new StackedPolytopeImpl(new PointInteger(
+                new BigInteger("0"), new BigInteger("0"), new BigInteger("0")),
+                new PointInteger(new BigInteger("2"), new BigInteger("0"),
+                        new BigInteger("0")), new PointInteger(new BigInteger(
+                        "2"), new BigInteger("2"), new BigInteger("0")));
+        sP1.divide(new PointInteger(new BigInteger("1"), new BigInteger("1"),
+                new BigInteger("1")));
+        
+        showPolytope(sP1);
+
+    }
+
+    public static void showPolytope(StackedPolytope sP1) {
         ArrayList<ArrayList<Double>> vertices = new ArrayList<ArrayList<Double>>();
         ArrayList<ArrayList<Integer>> faceIndices = new ArrayList<ArrayList<Integer>>();
         Transformation.iteratePolytope(sP1, vertices, faceIndices);
@@ -39,22 +48,24 @@ public class Test {
         for (int i = 0; i < faceIndices.size(); i++) {
             faceIndices1.add(arrayListToArray(faceIndices.get(i), true));
         }
-        
-        double[][] vertices2 = vertices1.toArray(new double[vertices1.size()][]);
-        int[][] faceIndices2 = faceIndices1.toArray(new int[faceIndices1.size()][]);
-        
+
+        double[][] vertices2 = vertices1
+                .toArray(new double[vertices1.size()][]);
+        int[][] faceIndices2 = faceIndices1
+                .toArray(new int[faceIndices1.size()][]);
+
         IndexedFaceSetFactory ifsf = new IndexedFaceSetFactory();
-        
-        ifsf.setVertexCount( vertices2.length );
-        ifsf.setVertexCoordinates( vertices2 );
-        ifsf.setFaceCount( faceIndices2.length );
-        ifsf.setFaceIndices( faceIndices2 );
-        
-        ifsf.setGenerateEdgesFromFaces( true );
-        ifsf.setGenerateFaceNormals( true );
-     
+
+        ifsf.setVertexCount(vertices2.length);
+        ifsf.setVertexCoordinates(vertices2);
+        ifsf.setFaceCount(faceIndices2.length);
+        ifsf.setFaceIndices(faceIndices2);
+
+        ifsf.setGenerateEdgesFromFaces(true);
+        ifsf.setGenerateFaceNormals(true);
+
         ifsf.update();
-        
+
         new ViewerFrame(ifsf.getIndexedFaceSet());
     }
 

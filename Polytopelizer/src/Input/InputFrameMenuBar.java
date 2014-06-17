@@ -1,5 +1,7 @@
 package Input;
 
+import interfaces.StackedPolytope;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 //import java.math.BigDecimal;
@@ -10,6 +12,7 @@ import javax.swing.JMenuItem;
 
 import Algorithm.Algorithm;
 import Geometry.PointDecimal;
+import Output.Test;
 
 @SuppressWarnings("serial")
 public class InputFrameMenuBar extends JMenuBar {
@@ -137,8 +140,9 @@ public class InputFrameMenuBar extends JMenuBar {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
 
-                Algorithm.calculateStackedPolytope2(InputFrame.aN);
+                StackedPolytope sp = Algorithm.calculateStackedPolytope1(InputFrame.aN);
                 // TODO Output here
+                Test.showPolytope(sp);
             }
         });
 
