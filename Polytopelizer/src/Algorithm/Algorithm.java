@@ -32,7 +32,7 @@ public class Algorithm {
 
         // round
 
-        pert = (new BigDecimal("240"))
+        pert = (new BigDecimal("1"))
                 .multiply(new BigDecimal(String.valueOf(Math.pow(n, 1.5))));
 
         // Calculate the first 3 Points of the StackedPolytope.
