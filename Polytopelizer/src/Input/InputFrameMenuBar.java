@@ -1,21 +1,18 @@
 package Input;
 
-import interfaces.ApollonianNetwork;
-import interfaces.Face;
+
+import interfaces.StackedPolytope;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-//import java.math.BigDecimal;
-
-
 
 import java.math.BigDecimal;
 import java.util.LinkedList;
-
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import output.Test;
 import Algorithm.Algorithm;
 import Datastructures.ApollNetwork;
 import Geometry.PointDecimal;
@@ -160,11 +157,9 @@ public class InputFrameMenuBar extends JMenuBar {
                 // TODO save me ?
                 if (!InputFrame.saved) {
                    // file speichern 
-//                   InputFrame.aN_File
                 }
                 setVisible(false);
                 System.exit(0);
-
             }
         });
 
@@ -172,10 +167,8 @@ public class InputFrameMenuBar extends JMenuBar {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-
-//                output.Test.(InputFrame.aN);
-                // TODO Output here
+                StackedPolytope sp = Algorithm.calculateStackedPolytope1(InputFrame.aN);
+                Test.showPolytope(sp);
             }
         });
 

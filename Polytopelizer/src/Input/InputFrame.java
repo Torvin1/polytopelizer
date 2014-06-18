@@ -2,6 +2,7 @@ package Input;
 
 /*#################### imports ##############################################*/
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 
@@ -31,6 +32,8 @@ import Datastructures.ApollNetwork;
     public static InputPanel inputpanel;
     public static LinkedList<PointDecimal> aN_points;
     public static LinkedList<PointDecimal> actionstack;
+    public static File aN_File;
+    public static boolean saved;
     public final static BigDecimal offsetX = new BigDecimal(250);
     public final static BigDecimal offsetY = new BigDecimal(50);
 
@@ -84,13 +87,15 @@ import Datastructures.ApollNetwork;
         // frame is now visible
         inputframe.setVisible(true);
     }
-
     /*
      * #######################main to test it
      * ####################################
      */
-
     public static void main(String[] args) {
+       
+        //TODO argument handling
+        
+        
         // new thread for the frame
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             // start the frame set

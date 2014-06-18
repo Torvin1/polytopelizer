@@ -7,6 +7,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
+import Geometry.PointInteger;
 import de.jreality.jogl.Viewer;
 import de.jreality.math.MatrixBuilder;
 import de.jreality.scene.Appearance;
@@ -27,7 +28,7 @@ import de.jreality.util.RenderTrigger;
 @SuppressWarnings("serial")
 public class ViewerFrame extends JFrame{
     
-    public ViewerFrame(IndexedFaceSet ifs){
+    public ViewerFrame(IndexedFaceSet ifs, PointInteger p){
         super();
         SceneGraphComponent rootNode = new SceneGraphComponent("root");
         SceneGraphComponent cameraNode = new SceneGraphComponent("camera");
@@ -52,7 +53,9 @@ public class ViewerFrame extends JFrame{
         ClickWheelCameraZoomTool scaleTool = new ClickWheelCameraZoomTool();
         rootNode.addTool(scaleTool);
         
-        MatrixBuilder.euclidean().translate(0, 0, 3).assignTo(cameraNode);
+        //MatrixBuilder.euclidean().translate(50, 50, 50).assignTo(cameraNode);
+        // TODO find good Ćameraplacment with maximum z Point
+        MatrixBuilder.euclidean().translate(p.x().intValue(), p.y().intValue(), p.z().intValue()+35).assignTo(cameraNode);
 
         Appearance rootApp= new Appearance();
         rootApp.setAttribute(CommonAttributes.BACKGROUND_COLOR, new Color(0f, .1f, .1f));
