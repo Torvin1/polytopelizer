@@ -1,14 +1,23 @@
 package Input;
 
+import interfaces.ApollonianNetwork;
+import interfaces.Face;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 //import java.math.BigDecimal;
+
+
+
+import java.math.BigDecimal;
+import java.util.LinkedList;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import Algorithm.Algorithm;
+import Datastructures.ApollNetwork;
 import Geometry.PointDecimal;
 
 @SuppressWarnings("serial")
@@ -24,6 +33,7 @@ public class InputFrameMenuBar extends JMenuBar {
         JMenuItem neu = new JMenuItem("new"); 
         JMenuItem save = new JMenuItem("save");
         JMenuItem load = new JMenuItem("load");
+        file.add(neu);
         file.add(save);
         file.add(load);
         JMenuItem end = new JMenuItem("end");
@@ -45,11 +55,27 @@ public class InputFrameMenuBar extends JMenuBar {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                // file saved ? / closed 
+                
+                // file saved ? / closed
+                if (!InputFrame.saved) {
+                    //file save here
+                }
+                // creates new aN
+                InputFrame.aN = new ApollNetwork(new PointDecimal(new BigDecimal(0).add(InputFrame.offsetX), new BigDecimal(500).add(InputFrame.offsetY)),
+                        new PointDecimal(new BigDecimal(500).add(InputFrame.offsetX), new BigDecimal(500).add(InputFrame.offsetY)),
+                        new PointDecimal(new BigDecimal(250).add(InputFrame.offsetX), new BigDecimal(67).add(InputFrame.offsetY)));
+                // new pointarräy for aN
+                InputFrame.aN_points = new LinkedList<PointDecimal>();
+                InputFrame.aN_points.add(new PointDecimal(new BigDecimal(0).add(InputFrame.offsetX), new BigDecimal(500).add(InputFrame.offsetY)));
+                InputFrame.aN_points.add(new PointDecimal(new BigDecimal(500).add(InputFrame.offsetX), new BigDecimal(500).add(InputFrame.offsetY)));
+                InputFrame.aN_points.add(new PointDecimal(new BigDecimal(250).add(InputFrame.offsetX), new BigDecimal(67).add(InputFrame.offsetY)));
                 // reset action stack 
-                // create new aN
-                // repaint
+                InputFrame.actionstack.clear();
+                // paint new aN
+                InputFrame.inputpanel.revalidate();
+                InputFrame.inputpanel.repaint();
             }
+            
         });
         
         load.addActionListener(new ActionListener() {
@@ -58,10 +84,14 @@ public class InputFrameMenuBar extends JMenuBar {
             public void actionPerformed(ActionEvent e) {
                 // file open 
                 // saved ?
+                if (!InputFrame.saved) {
+                    
+                }
                 // yes continue
                 // no ask for override 
                 // file browser ?
                 // open file
+                InputFrame.saved = true;
             }
         });
 
@@ -73,6 +103,7 @@ public class InputFrameMenuBar extends JMenuBar {
                 // yes ... save to file
                 // no .... give path to file + name
                 // TODO FileWrite
+                InputFrame.saved = true;
             }
         });
 
@@ -80,6 +111,7 @@ public class InputFrameMenuBar extends JMenuBar {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                InputFrame.saved = false;
                 PointDecimal x = null;
                 if (InputFrame.aN_points.size() > 3) {
                     try {
@@ -105,6 +137,7 @@ public class InputFrameMenuBar extends JMenuBar {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                InputFrame.saved = false;
                 PointDecimal x = null;
                 try {
                     x = InputFrame.actionstack.removeLast();
@@ -125,6 +158,10 @@ public class InputFrameMenuBar extends JMenuBar {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO save me ?
+                if (!InputFrame.saved) {
+                   // file speichern 
+//                   InputFrame.aN_File
+                }
                 setVisible(false);
                 System.exit(0);
 
@@ -137,7 +174,7 @@ public class InputFrameMenuBar extends JMenuBar {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
 
-                Algorithm.calculateStackedPolytope2(InputFrame.aN);
+//                output.Test.(InputFrame.aN);
                 // TODO Output here
             }
         });
