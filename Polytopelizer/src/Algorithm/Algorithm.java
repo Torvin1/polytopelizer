@@ -115,10 +115,11 @@ public class Algorithm {
             PointInteger p = sP_neu[0].getPoints()[0];
             // lift
 
-            PointInteger p0 = new PointInteger(p.x(), p.y(), new BigDecimal(
-                    sP.vShift()).multiply(pert_z).toBigInteger().add(p.z()));
+            PointInteger p0 = new PointInteger(p.x(), p.y(), new BigDecimal(sP.vShift()).multiply(pert_z).toBigInteger().add(p.z()));
 
-            changePoint(sP_neu, p0);
+            changePoint(sP_neu[0],p, p0);
+            changePoint(sP_neu[1],p, p0);
+            changePoint(sP_neu[2],p, p0);
 
             // update the heights of the subPolytops
             updateZ(sP_neu[0]);
@@ -133,14 +134,28 @@ public class Algorithm {
         return;
     }
 
-    private static void changePoint(StackedPolytope[] sP, PointInteger p0) {
+    //change all points with value point in the polytope to p0
+	private static void changePoint(StackedPolytope sP,PointInteger point, PointInteger p0) {
+		int i;
+		PointInteger[] p = sP.getPoints();
+		
+		for ( i = 0; i < 3; i++) {
+			 if(p[i].equals(point)){
+				 p[i]=p0;
+				 sP.mPoints(p[0], p[1], p[2]);
+				 	 
 
-        for (int i = 0; i < 3; i++) {
-            PointInteger p1 = sP[i].getPoints()[1];
-            PointInteger p2 = sP[i].getPoints()[2];
-            sP[i].mPoints(p0, p1, p2);
-        }
-    }
+				 if (!sP.isBoundary()) {
+					 StackedPolytope[] sP_neu = sP.smallerPolytopes();
+			         
+			         changePoint(sP_neu[0],point, p0);
+			         changePoint(sP_neu[1],point, p0);
+			         changePoint(sP_neu[2],point, p0);
+			     }
+			 }
+	    }
+		
+	}
 
     private static void updateZ(StackedPolytope sP) {
         // find the new heights of the subpolytops with the intersection of the
@@ -176,7 +191,9 @@ public class Algorithm {
             PointInteger p0 = new PointInteger(p.x(), p.y(), z.setScale(0,
                     BigDecimal.ROUND_HALF_UP).toBigInteger());
 
-            changePoint(sP_neu, p0);
+            changePoint(sP_neu[0],p, p0);
+            changePoint(sP_neu[1],p, p0);
+            changePoint(sP_neu[2],p, p0);
 
             // update the heights of the subPolytops
             updateZ(sP_neu[0]);
