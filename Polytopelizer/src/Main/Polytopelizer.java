@@ -43,11 +43,11 @@ public class Polytopelizer {
 
         
         StackedPolytope  sP3 = Algorithm.showPolytopeInt(); 
-        System.out.println("Stacked Polytope: " + sP3);
+        //System.out.println("Stacked Polytope: " + sP3);
         
         // StackedPolytope sP2 = DummyAlgorithm.calculateStackedPolytope2(aN);
 
-        //Test.showPolytope(sP1);
+        Test.showPolytope(sP3);
 
        
 

@@ -192,7 +192,7 @@ public class Algorithm {
             changePoint(sP_neu[1],p, p0);
             changePoint(sP_neu[2],p, p0);
 
-            // update the heights of the subPolytops
+            //update the heights of the subPolytops
             updateZ(sP_neu[0]);
             updateZ(sP_neu[1]);
             updateZ(sP_neu[2]);
