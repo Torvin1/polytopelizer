@@ -177,7 +177,7 @@ But before we calculate the new heights ($z_i$) we round the coordinates in the 
 
 \subsection{Round the graph to grid points}
 
-The coordinates on the embedding are all rounded so that they multiples of $1/\text{pert}$, where:
+The coordinates on the embedding are all rounded so that they are multiples of $1/\text{pert}$, where:
 
 $$\text{pert}=240n^{\frac{3}{2}}$$
 
@@ -185,5 +185,14 @@ Now we lift, rounding, the points so that the heights $z= \zeta_i + z_D $ are mu
 
 $$\text{pert}_z=3n$$ 
 
+After these points are rounded they are still real numbers, not intengers. To make them integer we multiply they with pert.
+
+To make the rounding we calculate:
+
+$$\lfloor x\cdot\text{pert}\rfloor \div \text{pert}$$
+
+The final value in integer is:
+
+$$\lfloor x\cdot\text{pert}\rfloor \div \text{pert} \cdot\text{pert} = \lfloor x\cdot\text{pert}\rfloor$$
 
 \end{document}

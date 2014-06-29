@@ -107,7 +107,7 @@ public class Geom {
 
         x = x4.add((x5.subtract(x4)).multiply(t));
         y = y4.add((y5.subtract(y4)).multiply(t));
-        x = z4.add((z5.subtract(z4)).multiply(t));
+        z = z4.add((z5.subtract(z4)).multiply(t));
 
         return new PointDecimal(x, y, z);
 
