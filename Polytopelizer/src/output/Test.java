@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import de.jreality.geometry.IndexedFaceSetFactory;
 import de.jreality.plugin.JRViewer;
 import de.jreality.scene.SceneGraphComponent;
+import de.jreality.scene.Viewer;
+import de.jreality.util.CameraUtility;
 
 public class Test {
     public static void main(String[] args) {
@@ -72,7 +74,8 @@ public class Test {
         
         SceneGraphComponent geometryNode = new SceneGraphComponent("geometry");
         geometryNode.setGeometry(ifsf.getIndexedFaceSet());
-        JRViewer.display(geometryNode);
+        Viewer v = JRViewer.display(geometryNode);
+        CameraUtility.encompass(v);
         //new ViewerFrame(ifsf.getIndexedFaceSet(), sP1.smallerPolytopes()[0].getPoints()[0]);
     }
 
