@@ -38,12 +38,12 @@ public class Polytopelizer {
         StackedPolytope sP1 = Algorithm.calculateStackedPolytope1(aN);
         System.out.println("Stacked Polytope: " + sP1);
         
-        StackedPolytopeDec  sP2 = Algorithm.showPolytopeDec(); 
-        System.out.println("Stacked Polytope: " + sP2);
+        //StackedPolytopeDec  sP2 = Algorithm.showPolytopeDec(); 
+        //System.out.println("Stacked Polytope: " + sP2);
 
         
         StackedPolytope  sP3 = Algorithm.showPolytopeInt(); 
-        //System.out.println("Stacked Polytope: " + sP3);
+        System.out.println("Stacked Polytope: " + sP3);
         
         // StackedPolytope sP2 = DummyAlgorithm.calculateStackedPolytope2(aN);
 

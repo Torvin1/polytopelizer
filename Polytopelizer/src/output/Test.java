@@ -23,19 +23,21 @@ public class Test {
                 BigDecimal.ZERO, BigDecimal.TEN));
         aN.addNode(new PointDecimal(new BigDecimal("3"), new BigDecimal("3")));
         aN.addNode(new PointDecimal(new BigDecimal("2"), new BigDecimal("3")));
+        aN.addNode(new PointDecimal(new BigDecimal("4"), new BigDecimal("5")));
 //        aN.addNode(new PointDecimal(new BigDecimal("3"), new BigDecimal("2")));
 //        aN.addNode(new PointDecimal(new BigDecimal("4"), new BigDecimal("4")));
 //        aN.addNode(new PointDecimal(new BigDecimal("5"), new BigDecimal("5")));
 //        aN.addNode(new PointDecimal(new BigDecimal("1"), new BigDecimal("3")));
+        
         StackedPolytope sP = Algorithm.calculateStackedPolytope1(aN);
 
-        //  StackedPolytope sP = new StackedPolytopeImpl(
-        //          new PointInteger(new BigInteger("0"), new BigInteger("0"), new BigInteger("0")), 
-        //          new PointInteger(new BigInteger("2"), new BigInteger("0"), new BigInteger("0")), 
-        //          new PointInteger(new BigInteger("1"), new BigInteger("4"), new BigInteger("0")));
-        //  sP.divide(new PointInteger(new BigInteger("1"), new BigInteger("2"), new BigInteger("1")));
+         // StackedPolytope sP = new StackedPolytopeImpl(
+         //         new PointInteger(new BigInteger("0"), new BigInteger("0"), new BigInteger("0")), 
+          //        new PointInteger(new BigInteger("2"), new BigInteger("0"), new BigInteger("0")), 
+        //       new PointInteger(new BigInteger("1"), new BigInteger("4"), new BigInteger("0")));
+        // sP.divide(new PointInteger(new BigInteger("1"), new BigInteger("2"), new BigInteger("1")));
         
-        showPolytope(sP);
+        showPolytope(Algorithm.showPolytopeInt());
     }
     
     public static void showPolytope(StackedPolytope sP){
