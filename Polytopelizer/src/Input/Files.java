@@ -1,10 +1,14 @@
 package Input;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.LinkedList;
+
 import Datastructures.ApollNetwork;
 import Geometry.PointDecimal;
 
@@ -54,4 +58,25 @@ public class Files {
         return aN;
     }
 
+    public static File apollonianNetworkToFile(ApollonianNetwork aN, String path) {
+
+        File file = new File(path);
+
+        try {
+
+            FileWriter writer = new FileWriter(file, false);
+            LinkedList<PointDecimal> points = aN.getPoints();
+
+            for (PointDecimal p : points)
+                writer.write(p.x().toString() + " " + p.y().toString()+"\n");
+
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return file;
+
+    }
 }
