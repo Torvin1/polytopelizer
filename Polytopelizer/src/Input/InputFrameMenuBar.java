@@ -27,12 +27,14 @@ public class InputFrameMenuBar extends JMenuBar {
         JMenuItem neu = new JMenuItem("New");
         JMenuItem save = new JMenuItem("Save As...");
         JMenuItem load = new JMenuItem("Open File...");
+        JMenuItem random = new JMenuItem("Create Random Apollonian Network...");
         JMenuItem calculate = new JMenuItem("Calculate Polygon...");
         JMenuItem calculateFile = new JMenuItem("Calculate Polygon from File...");
         JMenuItem end = new JMenuItem("Exit");
         file.add(neu);
         file.add(save);
         file.add(load);
+        file.add(random);
         file.add(calculate);
         file.add(calculateFile);
         file.add(end);
@@ -104,6 +106,20 @@ public class InputFrameMenuBar extends JMenuBar {
                     InputFrame.saved = true;
                 }
 
+            }
+        });
+        
+        random.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO save me ?
+                if (!InputFrame.saved) {
+                    // file speichern
+                }
+                Polytopelizer.aN = Files.createRandomNetwork(1000);
+                Polytopelizer.refresh();
+                InputFrame.saved = true;
             }
         });
 

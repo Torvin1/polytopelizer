@@ -103,6 +103,12 @@ public class Geom {
             t = (det4(m1).negate()).divide(det4(m2), 50, BigDecimal.ROUND_DOWN);
         } catch (IllegalMatrixException e) {
             e.printStackTrace();
+        } catch (Exception e){
+            System.out.println(p1);
+            System.out.println(p2);
+            System.out.println(p3);
+            System.out.println(p4);
+            System.out.println(p5);
         }
 
         x = x4.add((x5.subtract(x4)).multiply(t));
