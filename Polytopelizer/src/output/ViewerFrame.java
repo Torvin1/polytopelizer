@@ -79,7 +79,7 @@ public class ViewerFrame extends JFrame{
         this.validate();
         this.addWindowListener(new WindowAdapter() {
           public void windowClosing(WindowEvent arg0) {
-            System.exit(0);
+              setVisible(false);
           }
         });
         

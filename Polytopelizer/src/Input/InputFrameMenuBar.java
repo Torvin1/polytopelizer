@@ -9,40 +9,47 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import output.Test;
+import output.*;
 import Algorithm.Algorithm;
 import Geometry.PointDecimal;
+import Main.Files;
 import Main.Polytopelizer;
 import interfaces.*;
 
 @SuppressWarnings("serial")
 public class InputFrameMenuBar extends JMenuBar {
 
+    protected static final String Visualizsation = null;
+
     public InputFrameMenuBar() {
         JMenu file = new JMenu("File");
         JMenu edit = new JMenu("Edit");
-        this.add(file);
-        this.add(edit);
+        JMenu calc = new JMenu("Calculate");
+        add(file);
+        add(edit);
+        add(calc);
 
         JMenuItem neu = new JMenuItem("New");
         JMenuItem save = new JMenuItem("Save As...");
         JMenuItem load = new JMenuItem("Open File...");
         JMenuItem random = new JMenuItem("Create Random Apollonian Network...");
-        JMenuItem calculate = new JMenuItem("Calculate Polygon...");
-        JMenuItem calculateFile = new JMenuItem("Calculate Polygon from File...");
         JMenuItem end = new JMenuItem("Exit");
         file.add(neu);
         file.add(save);
         file.add(load);
         file.add(random);
-        file.add(calculate);
-        file.add(calculateFile);
         file.add(end);
 
         JMenuItem undo = new JMenuItem("Undo");
         JMenuItem redo = new JMenuItem("Redo");
         edit.add(undo);
         edit.add(redo);
+
+        JMenuItem calculate = new JMenuItem("Calculate Polygon...");
+        JMenuItem calculateFile = new JMenuItem(
+                "Calculate Polygon from File...");
+        calc.add(calculate);
+        calc.add(calculateFile);
 
         neu.addActionListener(new ActionListener() {
 
@@ -75,10 +82,10 @@ public class InputFrameMenuBar extends JMenuBar {
                 JFileChooser fc = new JFileChooser();
                 fc.setDialogTitle("Specify a file to open");
                 fc.setFileFilter(new FileNameExtensionFilter(
-                        "Apollonian Network (.aN)", "*.aN"));
-                
+                        "Apollonian Network (.aN)", "aN"));
+
                 int state = fc.showOpenDialog(Polytopelizer.superFrame);
-                
+
                 if (state == JFileChooser.APPROVE_OPTION) {
                     Polytopelizer.aN = Files.fileToApollonianNetwork(fc
                             .getSelectedFile().getPath());
@@ -96,7 +103,7 @@ public class InputFrameMenuBar extends JMenuBar {
                 JFileChooser fc = new JFileChooser();
                 fc.setDialogTitle("Specify a file to save");
                 fc.setFileFilter(new FileNameExtensionFilter(
-                        "Apollonian Network (.aN)", "*.aN"));
+                        "Apollonian Network (.aN)", "aN"));
 
                 int state = fc.showSaveDialog(Polytopelizer.superFrame);
 
@@ -108,7 +115,7 @@ public class InputFrameMenuBar extends JMenuBar {
 
             }
         });
-        
+
         random.addActionListener(new ActionListener() {
 
             @Override
@@ -117,7 +124,7 @@ public class InputFrameMenuBar extends JMenuBar {
                 if (!InputFrame.saved) {
                     // file speichern
                 }
-                Polytopelizer.aN = Files.createRandomNetwork(1000);
+                Polytopelizer.aN = Files.createRandomNetwork(10000);
                 Polytopelizer.refresh();
                 InputFrame.saved = true;
             }
@@ -170,7 +177,7 @@ public class InputFrameMenuBar extends JMenuBar {
             public void actionPerformed(ActionEvent e) {
                 StackedPolytope sp = Algorithm
                         .calculateStackedPolytope1(Polytopelizer.aN);
-                Test.showPolytope(sp);
+               Visualization.showPolytope(sp);
             }
         });
 
@@ -186,24 +193,24 @@ public class InputFrameMenuBar extends JMenuBar {
                 System.exit(0);
             }
         });
-        
+
         calculateFile.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
                 JFileChooser fc = new JFileChooser();
                 fc.setDialogTitle("Specify a file to open");
                 fc.setFileFilter(new FileNameExtensionFilter(
-                        "Apollonian Network (.aN)", "*.aN"));
-                
+                        "Apollonian Network (.aN)", "aN"));
+
                 int state = fc.showOpenDialog(Polytopelizer.superFrame);
-                
+
                 if (state == JFileChooser.APPROVE_OPTION) {
                     ApollonianNetwork aN = Files.fileToApollonianNetwork(fc
                             .getSelectedFile().getPath());
-                    Test.showPolytope(Algorithm.calculateStackedPolytope1(aN));
-                    
+                    Visualization.showPolytope(Algorithm.calculateStackedPolytope1(aN));
+
                 }
 
             }

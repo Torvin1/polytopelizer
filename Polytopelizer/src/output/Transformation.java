@@ -5,30 +5,6 @@ import interfaces.StackedPolytope;
 import java.util.ArrayList;
 
 public class Transformation {
-    public static void iteratePolytope(StackedPolytope sP, boolean first) {
-        if (first) {
-            System.out.println("" + sP.getPoints()[0].x() + " "
-                    + sP.getPoints()[0].y() + " " + sP.getPoints()[0].z());
-            System.out.println("" + sP.getPoints()[1].x() + " "
-                    + sP.getPoints()[1].y() + " " + sP.getPoints()[1].z());
-            System.out.println("" + sP.getPoints()[2].x() + " "
-                    + sP.getPoints()[2].y() + " " + sP.getPoints()[2].z());
-            System.out.println();
-        }
-        if (sP.isBoundary()) {
-            System.out.println("" + sP.getPoints()[0].x() + " "
-                    + sP.getPoints()[0].y() + " " + sP.getPoints()[0].z());
-            System.out.println("" + sP.getPoints()[1].x() + " "
-                    + sP.getPoints()[1].y() + " " + sP.getPoints()[1].z());
-            System.out.println("" + sP.getPoints()[2].x() + " "
-                    + sP.getPoints()[2].y() + " " + sP.getPoints()[2].z());
-            System.out.println();
-        } else {
-            for (int i = 0; i < sP.smallerPolytopes().length; i++) {
-                iteratePolytope(sP.smallerPolytopes()[i], false);
-            }
-        }
-    }
 
     public static void iteratePolytope(StackedPolytope sP,
             ArrayList<ArrayList<Double>> al, ArrayList<ArrayList<Integer>> al2) {
