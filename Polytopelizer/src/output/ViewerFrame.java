@@ -6,6 +6,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 import Geometry.PointInteger;
 import de.jreality.jogl.Viewer;
@@ -30,6 +31,8 @@ public class ViewerFrame extends JFrame{
     
     public ViewerFrame(IndexedFaceSet ifs, PointInteger p){
         super();
+        
+        setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         SceneGraphComponent rootNode = new SceneGraphComponent("root");
         SceneGraphComponent cameraNode = new SceneGraphComponent("camera");
         SceneGraphComponent geometryNode = new SceneGraphComponent("geometry");

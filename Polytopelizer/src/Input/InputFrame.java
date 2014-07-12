@@ -2,6 +2,8 @@ package Input;
 
 /*#################### imports ##############################################*/
 
+import java.awt.BorderLayout;
+
 import javax.swing.*;
 import javax.swing.plaf.LayerUI;
 
@@ -29,6 +31,7 @@ public class InputFrame extends JFrame {
 
         // drawing area gets added
         inputpanel = new InputPanel();
+        
 
         // inputframe.add(inputpanel); // simple mouse eventpanel
 
@@ -36,7 +39,9 @@ public class InputFrame extends JFrame {
         LayerUI<JComponent> layerUI = new DrawLayerUI();
         // combining interactive panel with a drawlayer
         JLayer<JComponent> jlayer = new JLayer<JComponent>(inputpanel, layerUI);
-        add(jlayer);
+        setLayout(new BorderLayout(100,0));
+        add( new JLabel("Punkte"), BorderLayout.LINE_END);
+        add(jlayer, BorderLayout.LINE_START );
 
         // frame elemets get merged
         pack();
