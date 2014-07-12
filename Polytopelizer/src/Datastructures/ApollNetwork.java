@@ -27,6 +27,8 @@ public class ApollNetwork implements ApollonianNetwork {
     }
 
     public boolean addNode(PointDecimal p) {
+        if (contains(p))
+            return false;
         Face smallestFace = faces.smallestFaceforPoint(p);
         if (smallestFace != null) {
             smallestFace.divide(p);
@@ -41,11 +43,11 @@ public class ApollNetwork implements ApollonianNetwork {
         if (smallestFace != null && smallestFace != faces) {
             points.remove(smallestFace.getPoints()[0]);
             smallestFace.outerFace().merge();
-            
+
         }
         return smallestFace != null && smallestFace != faces;
     }
-    
+
     public LinkedList<PointDecimal> getPoints() {
         return points;
     }
@@ -56,6 +58,14 @@ public class ApollNetwork implements ApollonianNetwork {
 
     public Face getFaces() {
         return faces;
+    }
+    
+    private boolean contains(PointDecimal p){
+        for (PointDecimal q : points){
+            if (p.x().equals(q.x()) && p.y().equals(q.y()))
+                return true;
+        }
+        return false;
     }
 
 }

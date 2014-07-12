@@ -45,10 +45,6 @@ public class InputPanel extends JPanel implements MouseListener, MouseMotionList
 
 /*############################ methods ######################################*/
 
-    /*
-     * event to add a new point to the network
-     * clears the action stack so no old points can be insterted
-     */
 
     @Override
     public void mouseClicked(MouseEvent e) {

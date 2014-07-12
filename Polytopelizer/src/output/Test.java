@@ -6,7 +6,6 @@ import Datastructures.*;
 import Geometry.*;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 
 import de.jreality.geometry.IndexedFaceSetFactory;

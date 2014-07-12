@@ -13,7 +13,7 @@ import output.Test;
 import Algorithm.Algorithm;
 import Geometry.PointDecimal;
 import Main.Polytopelizer;
-import interfaces.StackedPolytope;
+import interfaces.*;
 
 @SuppressWarnings("serial")
 public class InputFrameMenuBar extends JMenuBar {
@@ -28,11 +28,13 @@ public class InputFrameMenuBar extends JMenuBar {
         JMenuItem save = new JMenuItem("Save As...");
         JMenuItem load = new JMenuItem("Open File...");
         JMenuItem calculate = new JMenuItem("Calculate Polygon...");
+        JMenuItem calculateFile = new JMenuItem("Calculate Polygon from File...");
         JMenuItem end = new JMenuItem("Exit");
         file.add(neu);
         file.add(save);
         file.add(load);
         file.add(calculate);
+        file.add(calculateFile);
         file.add(end);
 
         JMenuItem undo = new JMenuItem("Undo");
@@ -166,6 +168,28 @@ public class InputFrameMenuBar extends JMenuBar {
                 }
                 setVisible(false);
                 System.exit(0);
+            }
+        });
+        
+        calculateFile.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                JFileChooser fc = new JFileChooser();
+                fc.setDialogTitle("Specify a file to open");
+                fc.setFileFilter(new FileNameExtensionFilter(
+                        "Apollonian Network (.aN)", "*.aN"));
+                
+                int state = fc.showOpenDialog(Polytopelizer.superFrame);
+                
+                if (state == JFileChooser.APPROVE_OPTION) {
+                    ApollonianNetwork aN = Files.fileToApollonianNetwork(fc
+                            .getSelectedFile().getPath());
+                    Test.showPolytope(Algorithm.calculateStackedPolytope1(aN));
+                    
+                }
+
             }
         });
 
