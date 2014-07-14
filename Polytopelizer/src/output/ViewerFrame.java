@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 
 import Geometry.PointInteger;
 import de.jreality.jogl.Viewer;
-import de.jreality.math.MatrixBuilder;
 import de.jreality.scene.Appearance;
 import de.jreality.scene.Camera;
 import de.jreality.scene.DirectionalLight;
@@ -20,8 +19,8 @@ import de.jreality.scene.SceneGraphPath;
 import de.jreality.shader.CommonAttributes;
 import de.jreality.tools.ClickWheelCameraZoomTool;
 import de.jreality.tools.DraggingTool;
+import de.jreality.tools.EncompassTool;
 import de.jreality.tools.RotateTool;
-import de.jreality.tools.ScaleTool;
 import de.jreality.toolsystem.ToolSystem;
 import de.jreality.util.RenderTrigger;
 
@@ -53,10 +52,9 @@ public class ViewerFrame extends JFrame{
         ClickWheelCameraZoomTool scaleTool = new ClickWheelCameraZoomTool();
         rootNode.addTool(scaleTool);
         
-        //MatrixBuilder.euclidean().translate(50, 50, 50).assignTo(cameraNode);
-        // TODO find good Ćameraplacment with maximum z Point
-        MatrixBuilder.euclidean().translate(p.x().intValue(), p.y().intValue(), p.z().intValue()+35).assignTo(cameraNode);
-
+        EncompassTool encompass = new EncompassTool();
+        rootNode.addTool(encompass);
+        
         Appearance rootApp= new Appearance();
         rootApp.setAttribute(CommonAttributes.BACKGROUND_COLOR, new Color(0f, .1f, .1f));
         rootApp.setAttribute(CommonAttributes.DIFFUSE_COLOR, new Color(1f, 0f, 0f));
@@ -82,7 +80,6 @@ public class ViewerFrame extends JFrame{
             System.exit(0);
           }
         });
-        
         RenderTrigger rt = new RenderTrigger();
         rt.addSceneGraphComponent(rootNode);
         rt.addViewer(viewer);

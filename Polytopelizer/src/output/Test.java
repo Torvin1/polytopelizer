@@ -6,14 +6,10 @@ import Datastructures.*;
 import Geometry.*;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 
 import de.jreality.geometry.IndexedFaceSetFactory;
-import de.jreality.plugin.JRViewer;
 import de.jreality.scene.SceneGraphComponent;
-import de.jreality.scene.Viewer;
-import de.jreality.util.CameraUtility;
 
 public class Test {
     public static void main(String[] args) {
@@ -56,9 +52,6 @@ public class Test {
        
         double[][] vertices2 = vertices1.toArray(new double[vertices1.size()][]);
         int[][] faceIndices2 = faceIndices1.toArray(new int[faceIndices1.size()][]);
-         
-        System.out.println(arrayToString(vertices2));
-        System.out.println(arrayToString(faceIndices2));
         
         IndexedFaceSetFactory ifsf = new IndexedFaceSetFactory();
         
@@ -74,58 +67,8 @@ public class Test {
         
         SceneGraphComponent geometryNode = new SceneGraphComponent("geometry");
         geometryNode.setGeometry(ifsf.getIndexedFaceSet());
-        Viewer v = JRViewer.display(geometryNode);
-        CameraUtility.encompass(v);
-        //new ViewerFrame(ifsf.getIndexedFaceSet(), sP1.smallerPolytopes()[0].getPoints()[0]);
-    }
-
-    @SuppressWarnings("unused")
-    private static String arrayToString(int[][] a) {
-        String blakeks = "";
-        for (int i = 0; i < a.length; i++) {
-            String l = "";
-            for (int j = 0; j < a[i].length; j++) {
-                if (j == 0) {
-                    l += "" + a[i][j];
-                } else {
-                    l += ", " + a[i][j];
-                }
-            }
-            l = "{" + l;
-            l += "}";
-            if (i == 0) {
-                blakeks += l;
-            } else {
-                blakeks += ", " + l;
-            }
-        }
-        blakeks = "{" + blakeks;
-        blakeks += "}";
-        return blakeks;
-    }
-
-    @SuppressWarnings("unused")
-    private static String arrayToString(double[][] a) {
-        String blakeks = "";
-        for (int i = 0; i < a.length; i++) {
-            String l = "";
-            for (int j = 0; j < a[i].length; j++) {
-                if (j == 0) {
-                    l += "" + a[i][j];
-                } else {
-                    l += ", " + a[i][j];
-                }
-            }
-            l = "{" + l;
-            l += "}";
-            if (i == 0) {
-                blakeks += l;
-            } else {
-                blakeks += ", " + l;
-            }
-        }
-        blakeks = "{" + blakeks;
-        blakeks += "}";
-        return blakeks;
+//        Viewer v = JRViewer.display(geometryNode);
+//        CameraUtility.encompass(v);
+        ViewerFrame vf = new ViewerFrame(ifsf.getIndexedFaceSet(), sP.smallerPolytopes()[0].getPoints()[0]);
     }
 }
