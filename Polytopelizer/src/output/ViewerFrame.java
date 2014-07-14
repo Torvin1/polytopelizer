@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 import Geometry.PointInteger;
+import de.jreality.geometry.IndexedFaceSetFactory;
 import de.jreality.jogl.Viewer;
 import de.jreality.scene.Appearance;
 import de.jreality.scene.Camera;
@@ -28,8 +29,21 @@ import de.jreality.util.RenderTrigger;
 @SuppressWarnings("serial")
 public class ViewerFrame extends JFrame{
     
-    public ViewerFrame(IndexedFaceSet ifs, PointInteger p){
+    public ViewerFrame(double[][] vertices, int[][] faceIndices, PointInteger p){
         super();
+
+        
+        IndexedFaceSetFactory ifsf = new IndexedFaceSetFactory();
+
+        ifsf.setVertexCount(vertices.length);
+        ifsf.setVertexCoordinates(vertices);
+        ifsf.setFaceCount(faceIndices.length);
+        ifsf.setFaceIndices(faceIndices);
+
+        ifsf.setGenerateEdgesFromFaces(true);
+        ifsf.setGenerateFaceNormals(true);
+
+        ifsf.update();
         
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         SceneGraphComponent rootNode = new SceneGraphComponent("root");
@@ -44,7 +58,7 @@ public class ViewerFrame extends JFrame{
         Light dl=new DirectionalLight();
         lightNode.setLight(dl);
         
-        geometryNode.setGeometry(ifs);
+        geometryNode.setGeometry(ifsf.getIndexedFaceSet());
         
         RotateTool rotateTool = new RotateTool();
         geometryNode.addTool(rotateTool);
@@ -76,6 +90,7 @@ public class ViewerFrame extends JFrame{
         
         this.setVisible(true);
         this.setSize(640, 480);
+        this.setLocation(0, -10);
         this.getContentPane().add((Component) viewer.getViewingComponent());
         this.validate();
         this.addWindowListener(new WindowAdapter() {
@@ -86,5 +101,20 @@ public class ViewerFrame extends JFrame{
         RenderTrigger rt = new RenderTrigger();
         rt.addSceneGraphComponent(rootNode);
         rt.addViewer(viewer);
+        
+        JFrame points = new JFrame();
+        String[] columnNames = {"Nr", "x","y","z"};
+        Double[][] vertices2 = new Double[vertices.length][vertices[0].length + 1];
+        for(int i = 0; i < vertices.length; i++){
+            vertices2[i][0] = i + 1.0d ;
+            for(int j = 0; j < vertices[i].length; j++){
+                vertices2[i][j+1] = vertices[i][j];
+            }
+        }
+        points.add(new PointPanel(vertices2,columnNames));
+        points.setSize(this.getWidth(), this.getHeight());
+        points.setLocation(this.getX() + this.getWidth(), 8);
+        points.setVisible(true);
+        points.validate();
     }
 }
