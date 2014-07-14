@@ -13,6 +13,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import Geometry.PointDecimal;
+import Main.Polytopelizer;
 
 /*
  * 
@@ -44,17 +45,12 @@ public class InputPanel extends JPanel implements MouseListener, MouseMotionList
 
 /*############################ methods ######################################*/
 
-    /*
-     * event to add a new point to the network
-     * clears the action stack so no old points can be insterted
-     */
 
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        InputFrame.aN.addNode(new PointDecimal(new BigDecimal(e.getX()), new BigDecimal(e.getY())));
-        InputFrame.aN_points.add(new PointDecimal(new BigDecimal(e.getX()), new BigDecimal(e.getY())));
-        InputFrame.actionstack.clear();
+        Polytopelizer.aN.addNode(new PointDecimal(new BigDecimal(e.getX()), new BigDecimal(e.getY())));
+        Polytopelizer.actionstack.clear();
         repaint();
     }
     

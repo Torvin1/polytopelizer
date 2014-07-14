@@ -9,8 +9,8 @@ import Geometry.*;
 public class GraphFace implements Face {
 
     private PointDecimal[] points;
-    private Face[] innerFaces;
-    private Face father;
+    private GraphFace[] innerFaces;
+    private GraphFace father;
     private BigInteger weight;
     private BigInteger spineInd; // gives the index from the child that is a
                                  // spine node
@@ -40,7 +40,7 @@ public class GraphFace implements Face {
         f2.father = this;
         GraphFace f3 = new GraphFace(p, points[2], points[0]);
         f3.father = this;
-        this.innerFaces = new Face[3];
+        this.innerFaces = new GraphFace[3];
         this.innerFaces[0] = f1;
         this.innerFaces[1] = f2;
         this.innerFaces[2] = f3;

@@ -1,4 +1,6 @@
 package interfaces;
+import java.util.LinkedList;
+
 import Geometry.PointDecimal;
 
 public interface ApollonianNetwork {
@@ -14,7 +16,9 @@ public interface ApollonianNetwork {
     // and True is returned.
     public Face getFaces();
     // Returns the Set of all (Sub-)Faces.
+    public LinkedList<PointDecimal> getPoints();
+ // Returns the points in the Network. The list has to represent the order of adding the nodes.
     public int getNPoints();
-    //Returns the Number of points in the Network
+    // Returns the Number of points in the Network
     
 }

@@ -13,7 +13,7 @@ public class DummyAlgorithm {
 
         // Get the Faces of the Apollonian Network
         Face f = aN.getFaces();
-
+        
         // Calculate the first 3 Points of the StackedPolytope.
         PointDecimal[] points = f.getPoints();
         PointInteger p1 = new PointInteger(points[0].x().multiply(new BigDecimal("2"))

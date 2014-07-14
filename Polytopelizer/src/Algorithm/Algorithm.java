@@ -28,7 +28,6 @@ public class Algorithm {
         int n = aN.getNPoints();
         // Get the Faces of the Apollonian Network
         Face f = aN.getFaces();
-
         // produce the caterpillar Tree
         f.caterpillar();
         // balance the Tree

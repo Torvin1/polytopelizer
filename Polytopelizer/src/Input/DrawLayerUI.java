@@ -12,6 +12,8 @@ import java.util.LinkedList;
 import javax.swing.JComponent;
 import javax.swing.plaf.LayerUI;
 
+import Main.Polytopelizer;
+
 @SuppressWarnings("serial")
 public class DrawLayerUI extends LayerUI<JComponent> {
 
@@ -25,7 +27,7 @@ public class DrawLayerUI extends LayerUI<JComponent> {
 
         // paints the network into the graphic
         // TODO add Draw list
-        paintApollonianNetwork(g2, InputFrame.aN);
+        paintApollonianNetwork(g2, Polytopelizer.aN);
         // frees the resources after drawing
         g2.dispose();
     }
