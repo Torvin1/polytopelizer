@@ -3,7 +3,7 @@ package Algorithm;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import output.data;
+//import output.data;
 
 import Datastructures.*;
 import Geometry.*;
@@ -86,7 +86,7 @@ public class Algorithm {
         
         createAndScalePolytopInteger(Algorithm.spDecimal, Algorithm.spInteger);
         
-        data.writeData(Algorithm.spInteger,true);
+        //data.writeData(Algorithm.spInteger,true);
         
         return Algorithm.spInteger;
 
