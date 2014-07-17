@@ -95,9 +95,6 @@ public class Transformation {
                 zMax = coordinates[i][2];
             }
         }
-        System.out.println(xMax);
-        System.out.println(yMax);
-        System.out.println(zMax);
         double xyMax;
         if(xMax < yMax){
             xyMax = yMax;
@@ -109,7 +106,6 @@ public class Transformation {
             for(int i = 0; i < coordinates.length; i++){
                 coordinates[i][2] = (int)(coordinates[i][2] * multp) + 0.0d;
             }
-            System.out.println(multp);
         }
         return coordinates;
     }
