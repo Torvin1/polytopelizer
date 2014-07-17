@@ -45,7 +45,7 @@ public class ViewerFrame extends JFrame{
 
         ifsf.update();
         
-        setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         SceneGraphComponent rootNode = new SceneGraphComponent("root");
         SceneGraphComponent cameraNode = new SceneGraphComponent("camera");
         SceneGraphComponent geometryNode = new SceneGraphComponent("geometry");
