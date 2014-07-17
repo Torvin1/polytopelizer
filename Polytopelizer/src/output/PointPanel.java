@@ -11,6 +11,7 @@ import javax.swing.table.TableRowSorter;
 public class PointPanel extends JPanel {
     
     public PointPanel(Object[][] rowData, Object[] columnNames){
+        @SuppressWarnings("serial")
         TableModel model = new DefaultTableModel(rowData, columnNames) {
             public Class getColumnClass(int column) {
               Class returnValue;
