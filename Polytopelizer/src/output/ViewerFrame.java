@@ -2,6 +2,8 @@ package output;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -32,12 +34,17 @@ public class ViewerFrame extends JFrame{
     
     public ViewerFrame(double[][] vertices, int[][] faceIndices, PointInteger p){
         super();
-
         
         IndexedFaceSetFactory ifsf = new IndexedFaceSetFactory();
 
+//        Color[] vertexColor = new Color[vertices.length];
+//        for(int i = 0; i < vertexColor.length; i++){
+//            vertexColor[i] = Color.YELLOW;
+//        }
+        
         ifsf.setVertexCount(vertices.length);
         ifsf.setVertexCoordinates(vertices);
+//        ifsf.setVertexColors(vertexColor);
         ifsf.setFaceCount(faceIndices.length);
         ifsf.setFaceIndices(faceIndices);
 
@@ -46,7 +53,7 @@ public class ViewerFrame extends JFrame{
 
         ifsf.update();
         
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         SceneGraphComponent rootNode = new SceneGraphComponent("root");
         SceneGraphComponent cameraNode = new SceneGraphComponent("camera");
         SceneGraphComponent geometryNode = new SceneGraphComponent("geometry");
@@ -74,7 +81,7 @@ public class ViewerFrame extends JFrame{
         rootNode.addTool(encompass);
         
         Appearance rootApp= new Appearance();
-        rootApp.setAttribute(CommonAttributes.BACKGROUND_COLOR, new Color(0f, .1f, .1f));
+        rootApp.setAttribute(CommonAttributes.BACKGROUND_COLOR, new Color(.0f, .2f, .2f));
         rootApp.setAttribute(CommonAttributes.DIFFUSE_COLOR, new Color(1f, 0f, 0f));
         rootNode.setAppearance(rootApp);
             
@@ -89,16 +96,6 @@ public class ViewerFrame extends JFrame{
         Viewer viewer = jr.getViewer();
         CameraUtility.encompass(viewer);
         
-        this.setLayout(new GridLayout(1,2));
-        this.setVisible(true);
-        this.setLocation(0, -10);
-        this.getContentPane().add((Component) viewer.getViewingComponent());
-        this.validate();
-        this.addWindowListener(new WindowAdapter() {
-          public void windowClosing(WindowEvent arg0) {
-              setVisible(false);
-          }
-        });
         RenderTrigger rt = new RenderTrigger();
         rt.addSceneGraphComponent(rootNode);
         rt.addViewer(viewer);
@@ -111,7 +108,23 @@ public class ViewerFrame extends JFrame{
                 vertices2[i][j+1] = vertices[i][j];
             }
         }
-        this.add(new PointPanel(vertices2,columnNames));
-        this.setSize(this.getPreferredSize());
+        
+
+        this.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        this.add((Component) viewer.getViewingComponent(), gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        this.add(new PointPanel(vertices2,columnNames), gbc);
+        this.setSize(this.getPreferredSize().width*2, this.getPreferredSize().height);
+        this.setVisible(true);
     }
 }

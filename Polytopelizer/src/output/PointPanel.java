@@ -8,11 +8,12 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+@SuppressWarnings("serial")
 public class PointPanel extends JPanel {
     
     public PointPanel(Object[][] rowData, Object[] columnNames){
-        @SuppressWarnings("serial")
         TableModel model = new DefaultTableModel(rowData, columnNames) {
+            @SuppressWarnings({ "rawtypes", "unchecked" })
             public Class getColumnClass(int column) {
               Class returnValue;
               if ((column >= 0) && (column < getColumnCount())) {
