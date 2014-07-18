@@ -6,9 +6,12 @@ import Datastructures.*;
 import Geometry.*;
 import Main.Files;
 
+import java.awt.Component;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
+
+import javax.swing.JFrame;
 
 import de.jreality.geometry.IndexedFaceSetFactory;
 import de.jreality.plugin.JRViewer;
@@ -62,8 +65,7 @@ public class Visualization {
 //
 //        ifsf.update();
 //        geometryNode.setGeometry(ifsf.getIndexedFaceSet());
-//        Viewer v = JRViewer.display(geometryNode);
-//        CameraUtility.encompass(v);
+
         ViewerFrame vf = new ViewerFrame(fixedList, 
                 Transformation.arrayListToArrayInt2D(faceIndices), sP.smallerPolytopes()[0].getPoints()[0]);
     }

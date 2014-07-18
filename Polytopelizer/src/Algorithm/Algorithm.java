@@ -46,8 +46,8 @@ public class Algorithm {
         // Calculate the first 3 Points of the StackedPolytope.
         //They are Defined as 
        
-       int[] px = {1,3,2};
-       int[] py = {0,0,2};
+       int[] px = {0,1,0};
+       int[] py = {0,0,1};
        
        for(int i=0;i<3;i++){
     	   xD = ((new BigDecimal(px[i])).multiply(pert).setScale(0,BigDecimal.ROUND_FLOOR)).divide(pert,prec,BigDecimal.ROUND_HALF_UP);

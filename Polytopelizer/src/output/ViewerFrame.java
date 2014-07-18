@@ -2,6 +2,7 @@ package output;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -10,20 +11,20 @@ import javax.swing.WindowConstants;
 
 import Geometry.PointInteger;
 import de.jreality.geometry.IndexedFaceSetFactory;
-import de.jreality.jogl.Viewer;
+import de.jreality.plugin.JRViewer;
 import de.jreality.scene.Appearance;
 import de.jreality.scene.Camera;
 import de.jreality.scene.DirectionalLight;
-import de.jreality.scene.IndexedFaceSet;
 import de.jreality.scene.Light;
 import de.jreality.scene.SceneGraphComponent;
 import de.jreality.scene.SceneGraphPath;
+import de.jreality.scene.Viewer;
 import de.jreality.shader.CommonAttributes;
 import de.jreality.tools.ClickWheelCameraZoomTool;
 import de.jreality.tools.DraggingTool;
 import de.jreality.tools.EncompassTool;
 import de.jreality.tools.RotateTool;
-import de.jreality.toolsystem.ToolSystem;
+import de.jreality.util.CameraUtility;
 import de.jreality.util.RenderTrigger;
 
 @SuppressWarnings("serial")
@@ -82,14 +83,14 @@ public class ViewerFrame extends JFrame{
         SceneGraphPath camPath = new SceneGraphPath(rootNode, cameraNode);
         camPath.push(camera);
         
-        Viewer viewer = new Viewer();
-        viewer.setSceneRoot(rootNode);
-        viewer.setCameraPath(camPath);
-        ToolSystem toolSystem = ToolSystem.toolSystemForViewer(viewer);
-        toolSystem.initializeSceneTools();
+        JRViewer jr = new JRViewer();
+        jr.setContent(rootNode);
+        jr.startupLocal();
+        Viewer viewer = jr.getViewer();
+        CameraUtility.encompass(viewer);
         
+        this.setLayout(new GridLayout(1,2));
         this.setVisible(true);
-        this.setSize(640, 480);
         this.setLocation(0, -10);
         this.getContentPane().add((Component) viewer.getViewingComponent());
         this.validate();
@@ -102,7 +103,6 @@ public class ViewerFrame extends JFrame{
         rt.addSceneGraphComponent(rootNode);
         rt.addViewer(viewer);
         
-        JFrame points = new JFrame();
         String[] columnNames = {"Nr", "x","y","z"};
         Double[][] vertices2 = new Double[vertices.length][vertices[0].length + 1];
         for(int i = 0; i < vertices.length; i++){
@@ -111,10 +111,7 @@ public class ViewerFrame extends JFrame{
                 vertices2[i][j+1] = vertices[i][j];
             }
         }
-        points.add(new PointPanel(vertices2,columnNames));
-        points.setSize(this.getWidth(), this.getHeight());
-        points.setLocation(this.getX() + this.getWidth(), 8);
-        points.setVisible(true);
-        points.validate();
+        this.add(new PointPanel(vertices2,columnNames));
+        this.setSize(this.getPreferredSize());
     }
 }
