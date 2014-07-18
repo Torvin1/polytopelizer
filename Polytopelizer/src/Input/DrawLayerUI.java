@@ -44,7 +44,7 @@ public class DrawLayerUI extends LayerUI<JComponent> {
             getSmallestFaces(faces, smallestfaces);
         for (int i = 0; i < smallestfaces.size(); i++) {
             paintFace(g, smallestfaces.get(i));
-        }      
+        }
     }
     
 //    draws the edges of the face on the drawing layer
@@ -52,7 +52,8 @@ public class DrawLayerUI extends LayerUI<JComponent> {
         for (int i = 0; i < f.getPoints().length; i++) {
             g.draw(new Line2D.Double(f.getPoints()[i].x().doubleValue(),
                     f.getPoints()[i].y().doubleValue(), f.getPoints()[(i + 1) % 3].x().doubleValue(), f
-                            .getPoints()[(i + 1) % 3].y().doubleValue()));        
+                            .getPoints()[(i + 1) % 3].y().doubleValue()));
+            g.drawRect(f.getPoints()[i].x().intValue()-1, f.getPoints()[i].y().intValue()-1,2,2);;
         }
     }
 
