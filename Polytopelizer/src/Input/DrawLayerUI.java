@@ -14,9 +14,12 @@ import javax.swing.plaf.LayerUI;
 
 import Main.Polytopelizer;
 
+
 @SuppressWarnings("serial")
 public class DrawLayerUI extends LayerUI<JComponent> {
 
+    private static int RECTWIDTH = 2;
+    
     @Override
     public void paint(Graphics g, JComponent c) {
         // draws the components
@@ -53,7 +56,7 @@ public class DrawLayerUI extends LayerUI<JComponent> {
             g.draw(new Line2D.Double(f.getPoints()[i].x().doubleValue(),
                     f.getPoints()[i].y().doubleValue(), f.getPoints()[(i + 1) % 3].x().doubleValue(), f
                             .getPoints()[(i + 1) % 3].y().doubleValue()));
-            g.drawRect(f.getPoints()[i].x().intValue()-1, f.getPoints()[i].y().intValue()-1,2,2);;
+            g.drawRect(f.getPoints()[i].x().intValue()-1, f.getPoints()[i].y().intValue()-1,RECTWIDTH,RECTWIDTH);;
         }
     }
 
