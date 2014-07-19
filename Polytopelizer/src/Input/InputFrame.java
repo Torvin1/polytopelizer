@@ -19,6 +19,7 @@ public class InputFrame extends JFrame {
 
     
     private InputPanel inputpanel;
+    public static PointPanel pointpanel;
     public static boolean saved;
 
     public InputFrame(String name) {
@@ -52,13 +53,18 @@ public class InputFrame extends JFrame {
             vertices2[i][1] = Polytopelizer.aN.getPoints().get(i).x().doubleValue();
             vertices2[i][2] = Polytopelizer.aN.getPoints().get(i).y().doubleValue();
             }
-        this.add(new PointPanel(vertices2,columnNames));
+        for (int i = 0 ; i < Polytopelizer.aN.getPoints().size() ; i++ ) {
+            System.out.printf(" Punkt %d : X = %f | ;Y = %f \n",i,  Polytopelizer.aN.getPoints().get(i).x().doubleValue(),Polytopelizer.aN.getPoints().get(i).y().doubleValue());
+        }
+        System.out.println("aN und vertices");
+        System.out.println(vertices2);
+        pointpanel = new PointPanel(vertices2,columnNames);
+        add(pointpanel);
         this.setSize(this.getWidth(), this.getHeight());
-        this.setLocation(this.getX() + this.getWidth(), 8);
-        this.setVisible(true);
-        this.validate();
-        
-        // frame elemets get merged
+        setLocation(this.getX() + this.getWidth(), 8);
+        setVisible(true);
+        validate();
+        // frame elements get merged
         pack();
         // frame is now visible
         setVisible(true);

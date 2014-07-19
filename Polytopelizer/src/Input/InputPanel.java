@@ -34,7 +34,7 @@ public class InputPanel extends JPanel implements MouseListener, MouseMotionList
         this.setBackground(Color.WHITE);
         // default value
         // TODO adjustment, static size ?
-        this.setPreferredSize(new java.awt.Dimension(1024, 576));
+        this.setPreferredSize(new java.awt.Dimension(800, 576));
         // gives panel a border
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         
@@ -51,6 +51,7 @@ public class InputPanel extends JPanel implements MouseListener, MouseMotionList
 
         Polytopelizer.aN.addNode(new PointDecimal(new BigDecimal(e.getX()), new BigDecimal(e.getY())));
         Polytopelizer.actionstack.clear();
+        InputFrame.pointpanel.revalidate();
         repaint();
     }
     
