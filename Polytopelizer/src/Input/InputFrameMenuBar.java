@@ -2,6 +2,8 @@ package Input;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
@@ -62,8 +64,13 @@ public class InputFrameMenuBar extends JMenuBar {
                 }
 
                 // creates new aN
-                Polytopelizer.aN = Files
-                        .fileToApollonianNetwork(Polytopelizer.INITIALNETWORKPATH);
+                try {
+                    Polytopelizer.aN = Files
+                            .fileToApollonianNetwork(Polytopelizer.INITIALNETWORKPATH);
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
 
                 Polytopelizer.refresh();
             }
@@ -87,8 +94,13 @@ public class InputFrameMenuBar extends JMenuBar {
                 int state = fc.showOpenDialog(Polytopelizer.superFrame);
 
                 if (state == JFileChooser.APPROVE_OPTION) {
-                    Polytopelizer.aN = Files.fileToApollonianNetwork(fc
-                            .getSelectedFile().getPath());
+                    try {
+                        Polytopelizer.aN = Files.fileToApollonianNetwork(fc
+                                .getSelectedFile().getPath());
+                    } catch (IOException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
                     Polytopelizer.refresh();
                     InputFrame.saved = true;
                 }
@@ -207,8 +219,14 @@ public class InputFrameMenuBar extends JMenuBar {
                 int state = fc.showOpenDialog(Polytopelizer.superFrame);
 
                 if (state == JFileChooser.APPROVE_OPTION) {
-                    ApollonianNetwork aN = Files.fileToApollonianNetwork(fc
-                            .getSelectedFile().getPath());
+                    ApollonianNetwork aN = null;
+                    try {
+                        aN = Files.fileToApollonianNetwork(fc
+                                .getSelectedFile().getPath());
+                    } catch (IOException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
                     Visualization.showPolytope(Algorithm.calculateStackedPolytope1(aN));
 
                 }

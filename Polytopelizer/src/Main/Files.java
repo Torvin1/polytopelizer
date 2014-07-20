@@ -93,11 +93,11 @@ public class Files {
         }
     }
 
-    public static ApollonianNetwork fileToApollonianNetwork(String path) {
+    public static ApollonianNetwork fileToApollonianNetwork(String path) throws IOException{
 
         ApollNetwork aN = null;
 
-        try {
+        
             BufferedReader br = new BufferedReader(new FileReader(path));
 
             // read the first three points
@@ -125,13 +125,7 @@ public class Files {
                 aN.addNode(p1);
             }
             br.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        
         return aN;
     }
 

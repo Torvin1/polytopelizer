@@ -115,12 +115,12 @@ public class ViewerFrame extends JFrame{
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1;
-        gbc.weighty = 1;
+        gbc.weighty = 9;
         gbc.fill = GridBagConstraints.BOTH;
         this.add((Component) viewer.getViewingComponent(), gbc);
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        gbc.weightx = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 8;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
         this.add(new PointPanel(vertices2,columnNames), gbc);
