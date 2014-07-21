@@ -30,4 +30,8 @@ public interface StackedPolytope {
     
     public BigInteger vShift();//view the shift
 	public void mShift(BigInteger shift);//modifies the shift
+	
+	public BigInteger getMaxX();
+	public BigInteger getMaxY();
+	public BigInteger getMaxZ();
 }

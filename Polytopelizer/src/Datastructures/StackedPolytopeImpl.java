@@ -11,7 +11,7 @@ public class StackedPolytopeImpl implements StackedPolytope {
     private StackedPolytope[] stackedTriangles;
     private StackedPolytope father;
     private BigInteger shift;
-    
+
     // Create a new simple Triangle.
     public StackedPolytopeImpl(PointInteger p1, PointInteger p2, PointInteger p3) {
         this.points = new PointInteger[3];
@@ -73,16 +73,16 @@ public class StackedPolytopeImpl implements StackedPolytope {
     }
 
     public void mPoints(PointInteger p1, PointInteger p2, PointInteger p3) {
-    	this.points[0] = p1;
+        this.points[0] = p1;
         this.points[1] = p2;
         this.points[2] = p3;
     }
 
-    
     public String toString() {
         String result = "";
         if (father == null)
-            result += points[1].toString() + points[2].toString() + points[0].toString();
+            result += points[1].toString() + points[2].toString()
+                    + points[0].toString();
         if (smallerPolytopes() != null) {
             result += smallerPolytopes()[0].getPoints()[0].toString();
             for (int i = 0; i < smallerPolytopes().length; i++)
@@ -90,13 +90,37 @@ public class StackedPolytopeImpl implements StackedPolytope {
         }
         return result;
     }
-	
-    public BigInteger vShift(){
-		return this.shift;
-	}
-	
-	public void mShift(BigInteger shift){
-		this.shift = shift;
-	}
-    
+
+    public BigInteger vShift() {
+        return this.shift;
+    }
+
+    public void mShift(BigInteger shift) {
+        this.shift = shift;
+    }
+
+    public BigInteger getMaxX() {
+        BigInteger max = points[0].x().max(points[1].x().max(points[2].x()));
+        if (!isBoundary())
+            for (StackedPolytope sP : stackedTriangles)
+                max = max.max(sP.getMaxX());
+        return max;
+    }
+
+    public BigInteger getMaxY() {
+        BigInteger max = points[0].y().max(points[1].y().max(points[2].y()));
+        if (!isBoundary())
+            for (StackedPolytope sP : stackedTriangles)
+                max = max.max(sP.getMaxY());
+        return max;
+    }
+
+    public BigInteger getMaxZ() {
+        BigInteger max = points[0].z().max(points[1].z().max(points[2].z()));
+        if (!isBoundary())
+            for (StackedPolytope sP : stackedTriangles)
+                max = max.max(sP.getMaxZ());
+        return max;
+    }
+
 }

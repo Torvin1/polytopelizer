@@ -51,7 +51,6 @@ public class InputPanel extends JPanel implements MouseListener, MouseMotionList
 
         Polytopelizer.aN.addNode(new PointDecimal(new BigDecimal(e.getX()), new BigDecimal(e.getY())));
         Polytopelizer.actionstack.clear();
-        InputFrame.pointpanel.revalidate();
         repaint();
     }
     

@@ -2,7 +2,6 @@ package Main;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -67,7 +66,7 @@ public class Files {
             }
         }
     }
-    
+
     public static void iteratePolytope(StackedPolytope sP, boolean first) {
         if (first) {
             System.out.println("" + sP.getPoints()[0].x() + " "
@@ -93,39 +92,39 @@ public class Files {
         }
     }
 
-    public static ApollonianNetwork fileToApollonianNetwork(String path) throws IOException{
+    public static ApollonianNetwork fileToApollonianNetwork(String path)
+            throws IOException {
 
         ApollNetwork aN = null;
 
-        
-            BufferedReader br = new BufferedReader(new FileReader(path));
+        BufferedReader br = new BufferedReader(new FileReader(path));
 
-            // read the first three points
-            String line = br.readLine();
-            String[] point = line.split(" ");
-            PointDecimal p1 = new PointDecimal(new BigDecimal(point[0]),
-                    new BigDecimal(point[1]));
-            line = br.readLine();
+        // read the first three points
+        String line = br.readLine();
+        String[] point = line.split(" ");
+        PointDecimal p1 = new PointDecimal(new BigDecimal(point[0]),
+                new BigDecimal(point[1]));
+        line = br.readLine();
+        point = line.split(" ");
+        PointDecimal p2 = new PointDecimal(new BigDecimal(point[0]),
+                new BigDecimal(point[1]));
+        line = br.readLine();
+        point = line.split(" ");
+        PointDecimal p3 = new PointDecimal(new BigDecimal(point[0]),
+                new BigDecimal(point[1]));
+
+        // create a new Apollonian Network
+        aN = new ApollNetwork(p1, p2, p3);
+
+        // add all the other nodes
+        while ((line = br.readLine()) != null) {
             point = line.split(" ");
-            PointDecimal p2 = new PointDecimal(new BigDecimal(point[0]),
-                    new BigDecimal(point[1]));
-            line = br.readLine();
-            point = line.split(" ");
-            PointDecimal p3 = new PointDecimal(new BigDecimal(point[0]),
-                    new BigDecimal(point[1]));
+            p1 = new PointDecimal(new BigDecimal(point[0]), new BigDecimal(
+                    point[1]));
+            aN.addNode(p1);
+        }
+        br.close();
 
-            // create a new Apollonian Network
-            aN = new ApollNetwork(p1, p2, p3);
-
-            // add all the other nodes
-            while ((line = br.readLine()) != null) {
-                point = line.split(" ");
-                p1 = new PointDecimal(new BigDecimal(point[0]), new BigDecimal(
-                        point[1]));
-                aN.addNode(p1);
-            }
-            br.close();
-        
         return aN;
     }
 
@@ -152,21 +151,22 @@ public class Files {
     }
 
     public static ApollonianNetwork createRandomNetwork(int size) {
-        BigDecimal kathete = new BigDecimal(String.valueOf(size / Math.sqrt(3)))
-                .setScale(0, BigDecimal.ROUND_DOWN);
-        PointDecimal p1 = new PointDecimal(kathete, new BigDecimal(0));
-        PointDecimal p2 = new PointDecimal(new BigDecimal(0), new BigDecimal(
-                size));
-        PointDecimal p3 = new PointDecimal(kathete.multiply(new BigDecimal(2)),
-                new BigDecimal(size));
+        PointDecimal p1 = new PointDecimal(new BigDecimal(10), new BigDecimal(
+                10));
+        PointDecimal p2 = new PointDecimal(new BigDecimal(size+10), new BigDecimal(
+                10));
+        PointDecimal p3 = new PointDecimal(new BigDecimal(10),
+                new BigDecimal(size+10));
         ApollonianNetwork aN = new ApollNetwork(p1, p2, p3);
         Random r = new Random();
         for (int i = 0; i < size - 3; i++) {
-            int y = r.nextInt(size);
-            int x = (int) (((2 * r.nextDouble() - 1) * y + size) / Math.sqrt(3));
-            aN.addNode(new PointDecimal(new BigDecimal(x), new BigDecimal(y)));
+            int x = r.nextInt(size);
+            int y = (int) (r.nextDouble() * (size - x));
+            i = aN.addNode(new PointDecimal(new BigDecimal(x+10),
+                    new BigDecimal(y+10))) ? i : i - 1;
         }
         return aN;
 
     }
+
 }

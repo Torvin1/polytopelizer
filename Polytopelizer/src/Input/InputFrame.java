@@ -2,13 +2,21 @@ package Input;
 
 /*#################### imports ##############################################*/
 
+import interfaces.StackedPolytope;
+
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.plaf.LayerUI;
 
+import Algorithm.Algorithm;
+import Geometry.PointDecimal;
+import Main.Files;
 import Main.Polytopelizer;
-import output.PointPanel;
+import output.Visualization;
 
 // TODO grobal field for faces, points ?
 // TODO Event listener (menubar, point drawing)
@@ -17,9 +25,7 @@ import output.PointPanel;
 @SuppressWarnings("serial")
 public class InputFrame extends JFrame {
 
-    
     private InputPanel inputpanel;
-    public static PointPanel pointpanel;
     public static boolean saved;
 
     public InputFrame(String name) {
@@ -27,6 +33,8 @@ public class InputFrame extends JFrame {
 
         // Close Button
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setPreferredSize(new Dimension(710, 710));
+        setResizable(false);
 
         // set title
         // adding elements to the frame
@@ -35,31 +43,17 @@ public class InputFrame extends JFrame {
 
         // drawing area gets added
         inputpanel = new InputPanel();
-        
-
-        // inputframe.add(inputpanel); // simple mouse eventpanel
+        inputpanel.setPreferredSize(new Dimension(800, 600));
 
         // adding a layer to draw on
         LayerUI<JComponent> layerUI = new DrawLayerUI();
         // combining interactive panel with a drawlayer
         JLayer<JComponent> jlayer = new JLayer<JComponent>(inputpanel, layerUI);
-        setLayout(new BorderLayout(100,0));
-      //  add( new JLabel("Punkte"), BorderLayout.LINE_END);
-        add(jlayer, BorderLayout.LINE_START );
-        String[] columnNames = {"Nr", "x","y"};
-        Double[][] vertices2 = new Double[Polytopelizer.aN.getPoints().size()][3];
-        for(int i = 0; i < Polytopelizer.aN.getPoints().size(); i++){
-            vertices2[i][0] = i + 1.0d ;
-            vertices2[i][1] = Polytopelizer.aN.getPoints().get(i).x().doubleValue();
-            vertices2[i][2] = Polytopelizer.aN.getPoints().get(i).y().doubleValue();
-            }
-        for (int i = 0 ; i < Polytopelizer.aN.getPoints().size() ; i++ ) {
-            System.out.printf(" Punkt %d : X = %f | ;Y = %f \n",i,  Polytopelizer.aN.getPoints().get(i).x().doubleValue(),Polytopelizer.aN.getPoints().get(i).y().doubleValue());
-        }
-        System.out.println("aN und vertices");
-        System.out.println(vertices2);
-        pointpanel = new PointPanel(vertices2,columnNames);
-        add(pointpanel);
+        // setLayout(new BorderLayout(0, 10));
+        // add( new JLabel("Punkte"), BorderLayout.LINE_END);
+
+        add(jlayer, BorderLayout.PAGE_START);
+        setButtons();
         this.setSize(this.getWidth(), this.getHeight());
         setLocation(this.getX() + this.getWidth(), 8);
         setVisible(true);
@@ -69,9 +63,92 @@ public class InputFrame extends JFrame {
         // frame is now visible
         setVisible(true);
     }
-    
-    public InputPanel getInputPanel(){
+
+    public InputPanel getInputPanel() {
         return inputpanel;
     }
 
+    public void setButtons() {
+
+        // final Icon icon1 = new ImageIcon(
+        // JButton.class.getResource("/images/user-trash-full.png"));
+        // final Icon icon2 = new ImageIcon(
+        // JButton.class.getResource("/images/user-trash.png"));
+
+        JPanel buttons = new JPanel();
+        add(buttons);
+        // buttons.setLayout(new BoxLayout(buttons, BoxLayout.X_AXIS));
+        buttons.setLayout(null);
+
+        final JButton calc = new JButton("Calculate Polytope...");
+        final JButton redo = new JButton("Redo");
+        final JButton undo = new JButton("Undo");
+        final JButton random = new JButton("Random network...");
+        random.setBounds(10, 15, 180, 30);
+        undo.setBounds(250, 15, 100, 30);
+        redo.setBounds(350, 15, 100, 30);
+        calc.setBounds(515, 15, 180, 30);
+        buttons.add(random);
+        buttons.add(redo);
+        buttons.add(undo);
+        buttons.add(calc);
+
+        calc.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                StackedPolytope sp = Algorithm
+                        .calculateStackedPolytope1(Polytopelizer.aN);
+                Visualization.showPolytope(sp);
+            }
+        });
+
+        redo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                PointDecimal x = null;
+                try {
+                    x = Polytopelizer.actionstack.removeLast();
+                } catch (Exception e2) {
+
+                    System.out.println("No points available to be reinserted.");
+                    return;
+                }
+                Polytopelizer.aN.addNode(x);
+                InputFrame.saved = false;
+                Polytopelizer.superFrame.getInputPanel().repaint();
+                Polytopelizer.superFrame.getInputPanel().revalidate();
+            }
+        });
+
+        undo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                PointDecimal x = null;
+                if (Polytopelizer.aN.getNPoints() > 3) {
+                    try {
+                        x = Polytopelizer.aN.getPoints().getLast();
+                    } catch (Exception e2) {
+                        System.out
+                                .println("No points available to be removed.");
+                        return;
+                    }
+                    Polytopelizer.actionstack.add(x);
+                    Polytopelizer.aN.removeNode(x);
+                    InputFrame.saved = false;
+                    Polytopelizer.superFrame.getInputPanel().repaint();
+                    Polytopelizer.superFrame.getInputPanel().revalidate();
+                }
+            }
+        });
+
+        random.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO save me ?
+                if (!InputFrame.saved) {
+                    // file speichern
+                }
+                Polytopelizer.aN = Files.createRandomNetwork(1000);
+                Polytopelizer.refresh();
+                InputFrame.saved = true;
+            }
+        });
+
+    }
 }

@@ -3,6 +3,7 @@ package Input;
 import interfaces.ApollonianNetwork;
 import interfaces.Face;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
@@ -18,7 +19,7 @@ import Main.Polytopelizer;
 @SuppressWarnings("serial")
 public class DrawLayerUI extends LayerUI<JComponent> {
 
-    private static int RECTWIDTH = 2;
+    private static int OFFSET = 10;
     
     @Override
     public void paint(Graphics g, JComponent c) {
@@ -56,7 +57,9 @@ public class DrawLayerUI extends LayerUI<JComponent> {
             g.draw(new Line2D.Double(f.getPoints()[i].x().doubleValue(),
                     f.getPoints()[i].y().doubleValue(), f.getPoints()[(i + 1) % 3].x().doubleValue(), f
                             .getPoints()[(i + 1) % 3].y().doubleValue()));
-            g.drawRect(f.getPoints()[i].x().intValue()-1, f.getPoints()[i].y().intValue()-1,RECTWIDTH,RECTWIDTH);;
+            g.setColor(Color.BLUE);
+            g.fillOval(f.getPoints()[i].x().intValue()-OFFSET/2, f.getPoints()[i].y().intValue()-OFFSET/2,OFFSET,OFFSET);
+            g.setColor(Color.BLACK);
         }
     }
 

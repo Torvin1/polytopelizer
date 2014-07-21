@@ -1,9 +1,6 @@
 package Main;
 
 import java.util.LinkedList;
-
-import output.Visualization;
-
 import Algorithm.Algorithm;
 import Geometry.PointDecimal;
 import Input.*;
