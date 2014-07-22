@@ -43,12 +43,12 @@ public class CLI {
                             + maxY.divide(new BigInteger(String.valueOf(counts)))+ "\n");
                     writerZ.write(""
                             + maxZ.divide(new BigInteger(String.valueOf(counts)))+ "\n");
+                    writerX.flush();
+                    writerY.flush();
+                    writerZ.flush();
                 }
-                writerX.flush();
                 writerX.close();
-                writerY.flush();
                 writerY.close();
-                writerZ.flush();
                 writerZ.close();
                 System.out.println("DONE");
             } catch (Exception exc) {
