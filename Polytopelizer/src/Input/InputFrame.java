@@ -144,9 +144,18 @@ public class InputFrame extends JFrame {
                 if (!InputFrame.saved) {
                     // file speichern
                 }
-                Polytopelizer.aN = Files.createRandomNetwork(1000);
-                Polytopelizer.refresh();
-                InputFrame.saved = true;
+
+                String n = JOptionPane.showInputDialog(null, "How many nodes (at least 3)?");
+                
+                try {
+                    int number = new Integer(n);
+                    if (number>=3){
+                        Polytopelizer.aN = Files.createRandomNetwork(number);
+                        Polytopelizer.refresh();
+                        InputFrame.saved = true;
+                    }
+                } catch (Exception exc) {
+                }
             }
         });
 

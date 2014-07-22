@@ -151,17 +151,18 @@ public class Files {
     }
 
     public static ApollonianNetwork createRandomNetwork(int size) {
+        int showSize = Math.max(size, 500);
         PointDecimal p1 = new PointDecimal(new BigDecimal(10), new BigDecimal(
                 10));
-        PointDecimal p2 = new PointDecimal(new BigDecimal(size+10), new BigDecimal(
+        PointDecimal p2 = new PointDecimal(new BigDecimal(showSize+10), new BigDecimal(
                 10));
         PointDecimal p3 = new PointDecimal(new BigDecimal(10),
-                new BigDecimal(size+10));
+                new BigDecimal(showSize+10));
         ApollonianNetwork aN = new ApollNetwork(p1, p2, p3);
         Random r = new Random();
         for (int i = 0; i < size - 3; i++) {
-            int x = r.nextInt(size);
-            int y = (int) (r.nextDouble() * (size - x));
+            int x = r.nextInt(showSize);
+            int y = (int) (r.nextDouble() * (showSize - x));
             i = aN.addNode(new PointDecimal(new BigDecimal(x+10),
                     new BigDecimal(y+10))) ? i : i - 1;
         }
