@@ -23,34 +23,19 @@ public class CLI {
                 int n = new Integer(arguments[1]);
                 int counts = new Integer(arguments[2]);
                 StackedPolytope sP;
-                FileWriter writerX = new FileWriter("coordinateX", false);
-                FileWriter writerY = new FileWriter("coordinateY", false);
-                FileWriter writerZ = new FileWriter("coordinateZ", false);
-                for (int j = 3; j <= n; j++) {
-                    BigInteger maxX = BigInteger.ZERO;
-                    BigInteger maxY = BigInteger.ZERO;
-                    BigInteger maxZ = BigInteger.ZERO;
-                    for (int i = 0; i < counts; i++) {
-                        sP = Algorithm.calculateStackedPolytope1(Files
-                                .createRandomNetwork(j));
-                        maxX = maxX.add(sP.getMaxX());
-                        maxY = maxY.add(sP.getMaxY());
-                        maxZ = maxZ.add(sP.getMaxZ());
-                    }
-                    writerX.write(""
-                            + maxX.divide(new BigInteger(String.valueOf(counts)))+ "\n");
-                    writerY.write(""
-                            + maxY.divide(new BigInteger(String.valueOf(counts)))+ "\n");
-                    writerZ.write(""
-                            + maxZ.divide(new BigInteger(String.valueOf(counts)))+ "\n");
-                    writerX.flush();
-                    writerY.flush();
-                    writerZ.flush();
+                BigInteger maxX = BigInteger.ZERO;
+                BigInteger maxY = BigInteger.ZERO;
+                BigInteger maxZ = BigInteger.ZERO;
+                for (int i = 0; i < counts; i++) {
+                    sP = Algorithm.calculateStackedPolytope1(Files
+                            .createRandomNetwork(n));
+                    maxX = maxX.add(sP.getMaxX());
+                    maxY = maxY.add(sP.getMaxY());
+                    maxZ = maxZ.add(sP.getMaxZ());
                 }
-                writerX.close();
-                writerY.close();
-                writerZ.close();
-                System.out.println("DONE");
+                System.out.println(maxX);
+                System.out.println(maxY);
+                System.out.println(maxZ);
             } catch (Exception exc) {
                 System.out.println("Help for using the polytopelizer:");
                 System.out.println("no arguments - starts the GUI");
