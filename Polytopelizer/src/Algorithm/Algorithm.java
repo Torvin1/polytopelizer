@@ -49,8 +49,10 @@ public class Algorithm {
 
         // round
 
+        BigInteger R = f.Weight();
+        
         pert = (new BigDecimal("240")).multiply(new BigDecimal(String
-                .valueOf(Math.pow(n, 1.5))));
+                .valueOf(Math.pow(R.intValue(), 1.5))));
 
         // Calculate the first 3 Points of the StackedPolytope.
         // They are Defined as
@@ -78,7 +80,7 @@ public class Algorithm {
         createPertPolytopDec(f, Algorithm.spDecimal);
 
         // lift
-        pert_z = (new BigDecimal("3")).multiply(new BigDecimal(n));
+        pert_z = (new BigDecimal("3")).multiply(new BigDecimal(R));
         lift(Algorithm.spDecimal);
 
         // scale and transform to integers
