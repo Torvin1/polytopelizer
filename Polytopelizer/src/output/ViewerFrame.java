@@ -6,7 +6,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -46,6 +45,7 @@ public class ViewerFrame extends JFrame {
 
     Double[][] vertices2;
     Component jre;
+    JRViewer jr;
     StackedPolytope sP;
 
     public ViewerFrame(StackedPolytope sP) {
@@ -61,7 +61,7 @@ public class ViewerFrame extends JFrame {
 
         double[][] verticess = Transformation.arrayListToArray2D(vertices);
 
-        double[][] fixedList = Transformation.fixZCoordinates(Transformation
+        double[][] fixedList = Transformation.fixZCoordinatesForDisplay(Transformation
                 .arrayListToArray2D(vertices));
 
         IndexedFaceSetFactory ifsf = new IndexedFaceSetFactory();
@@ -121,7 +121,7 @@ public class ViewerFrame extends JFrame {
         SceneGraphPath camPath = new SceneGraphPath(rootNode, cameraNode);
         camPath.push(camera);
 
-        JRViewer jr = new JRViewer();
+        jr = new JRViewer();
         jr.setContent(rootNode);
         jr.startupLocal();
         Viewer viewer = jr.getViewer();
@@ -179,7 +179,7 @@ public class ViewerFrame extends JFrame {
                 int state = fc.showSaveDialog(Polytopelizer.superFrame);
 
                 if (state == JFileChooser.APPROVE_OPTION) {
-                    saveComponentAsJPEG("test.png");
+                    saveComponentAsJPEG(fc.getSelectedFile().getAbsolutePath());
                 }
 
             }
@@ -204,14 +204,11 @@ public class ViewerFrame extends JFrame {
     }
 
     public void saveComponentAsJPEG(String filename) {
-        BufferedImage bi = new BufferedImage(this.getSize().width,
-                this.getSize().height, BufferedImage.TYPE_INT_ARGB);
-        Graphics g = bi.createGraphics();
-        jre.paint(g);
-        g.dispose();
+        BufferedImage bi = de.jreality.util.ImageUtility.captureScreenshot(jr.getViewer());
         try {
-            ImageIO.write(bi, "png", new File(filename));
+            ImageIO.write(bi, "jpg", new File(filename));
         } catch (Exception e) {
+            System.out.println("couldnt write picture");
         }
     }
 

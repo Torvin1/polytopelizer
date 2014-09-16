@@ -80,7 +80,7 @@ public class Transformation {
         return faceIndices;
     }
     
-    public static double[][] fixZCoordinates(double[][] coordinates){
+    public static double[][] fixZCoordinatesForDisplay(double[][] coordinates){
         double xMax = -1;
         double yMax = -1;
         double zMax = -1; 
@@ -101,8 +101,12 @@ public class Transformation {
         }else{
             xyMax = xMax;
         }
+        double multp = ((double)(xyMax/2))/((double)zMax);
         if(zMax < (xyMax/2)){
-            double multp = ((double)(xyMax/2))/((double)zMax);
+            for(int i = 0; i < coordinates.length; i++){
+                coordinates[i][2] = (int)(coordinates[i][2] * multp) + 0.0d;
+            }
+        }else if(zMax > (xyMax/2)){
             for(int i = 0; i < coordinates.length; i++){
                 coordinates[i][2] = (int)(coordinates[i][2] * multp) + 0.0d;
             }

@@ -2,7 +2,6 @@ package Main;
 
 import interfaces.StackedPolytope;
 
-import java.io.FileWriter;
 import java.math.BigInteger;
 
 import Algorithm.Algorithm;
