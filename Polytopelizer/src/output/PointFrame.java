@@ -11,10 +11,16 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-
 @SuppressWarnings("serial")
 public class PointFrame extends JFrame {
 
+    
+    /**
+     * 
+     * creates a new JFrame, which contains an Table
+     * 
+     * @param rowData Data, which is shown in the Table
+     */
     public PointFrame(Object[][] rowData) {
         super("Points");
 
@@ -39,6 +45,15 @@ public class PointFrame extends JFrame {
         
     }
     
+    /**
+     * 
+     * Subclass of AbstractTableModel
+     * 
+     * Used to design the shown table
+     * 
+     * @author Patrick Winterstein
+     *
+     */
     private class PointTable extends AbstractTableModel {
 
         private String[] columnNames = { "Point", "x-coordinate",

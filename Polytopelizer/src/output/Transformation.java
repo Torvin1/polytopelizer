@@ -6,6 +6,15 @@ import java.util.ArrayList;
 
 public class Transformation {
 
+    /**
+     * 
+     * This Method iterates over the given StackedPolytope to find all
+     * vertices and faces.
+     * 
+     * @param sP given StackedPolytope
+     * @param al 2D ArrayList, which will store the vertices
+     * @param al2 2D ArrayList, which will store the faces
+     */
     public static void iteratePolytope(StackedPolytope sP,
             ArrayList<ArrayList<Double>> al, ArrayList<ArrayList<Integer>> al2) {
         ArrayList<Integer> indices = new ArrayList<Integer>();
@@ -24,6 +33,14 @@ public class Transformation {
         iteratePolytopeHelp(sP, al, al2);
     }
 
+    /**
+     * 
+     * Helping-Method for the rekursive Iteration
+     * 
+     * @param sP given StackedPolytope
+     * @param al 2D ArrayList, which will store the vertices
+     * @param al2 2D ArrayList, which will store the faces
+     */
     private static void iteratePolytopeHelp(StackedPolytope sP,
             ArrayList<ArrayList<Double>> al, ArrayList<ArrayList<Integer>> al2) {
         if (!sP.isBoundary()) {
@@ -47,14 +64,13 @@ public class Transformation {
         }
     }
     
-    public static double[] arrayListToArray(ArrayList<Double> al) {
-        double[] ret = new double[al.size()];
-        for (int i = 0; i < al.size(); i++) {
-            ret[i] = al.get(i);
-        }
-        return ret;
-    }
-    
+    /**
+     * 
+     * Converts an 2D ArrayList to and 2D Array
+     * 
+     * @param al 2D ArrayList
+     * @return 2D Array
+     */
     public static double[][] arrayListToArray2D(ArrayList<ArrayList<Double>> al) {
         ArrayList<double[]> vertices1 = new ArrayList<double[]>();
         for (int i = 0; i < al.size(); i++) {
@@ -64,13 +80,28 @@ public class Transformation {
         return vertices;
     }
 
-    public static int[] arrayListToArrayInt(ArrayList<Integer> al) {
-        int[] ret = new int[al.size()];
+    /**
+     * 
+     * Converts an 1D ArrayList to and 1D Array
+     * 
+     * @param al 1D ArrayList
+     * @return 1D Array
+     */
+    public static double[] arrayListToArray(ArrayList<Double> al) {
+        double[] ret = new double[al.size()];
         for (int i = 0; i < al.size(); i++) {
             ret[i] = al.get(i);
         }
         return ret;
     }
+    
+    /**
+     * 
+     * Converts an 2D ArrayList to and 2D Array
+     * 
+     * @param al 2D ArrayList
+     * @return 2D Array
+     */
     public static int[][] arrayListToArrayInt2D(ArrayList<ArrayList<Integer>> al) {
         ArrayList<int[]> faceIndices1 = new ArrayList<int[]>();
         for (int i = 0; i < al.size(); i++) {
@@ -79,7 +110,30 @@ public class Transformation {
         int[][] faceIndices = faceIndices1.toArray(new int[faceIndices1.size()][]);
         return faceIndices;
     }
+
+    /**
+     * 
+     * Converts an 1D ArrayList to and 1D Array
+     * 
+     * @param al 1D ArrayList
+     * @return 1D Array
+     */
+    public static int[] arrayListToArrayInt(ArrayList<Integer> al) {
+        int[] ret = new int[al.size()];
+        for (int i = 0; i < al.size(); i++) {
+            ret[i] = al.get(i);
+        }
+        return ret;
+    }
     
+    /**
+     * 
+     * This Method changes the Z-Coordinates of the displayed Points
+     * to make it more appealing.
+     * 
+     * @param coordinates List of Coordinates
+     * @return List of Coordinates with changed Z Coordinates.
+     */
     public static double[][] fixZCoordinatesForDisplay(double[][] coordinates){
         double xMax = -1;
         double yMax = -1;

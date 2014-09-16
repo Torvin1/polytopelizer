@@ -48,6 +48,13 @@ public class ViewerFrame extends JFrame {
     JRViewer jr;
     StackedPolytope sP;
 
+    /**
+     * 
+     * Creates a new JRViewer, which contains the calculated Polytope.
+     * It can be rotated, zoomed and dragged.
+     * 
+     * @param sP calculated Polytope
+     */
     public ViewerFrame(StackedPolytope sP) {
         super("Polytopelizer - the stacked polytope");
         
@@ -55,6 +62,7 @@ public class ViewerFrame extends JFrame {
         setPreferredSize(new Dimension(685, 685));
         setResizable(false);
 
+        // initialize vertices and faces to display Polytop
         ArrayList<ArrayList<Double>> vertices = new ArrayList<ArrayList<Double>>();
         ArrayList<ArrayList<Integer>> faceIndices = new ArrayList<ArrayList<Integer>>();
         Transformation.iteratePolytope(sP, vertices, faceIndices);
@@ -66,11 +74,13 @@ public class ViewerFrame extends JFrame {
 
         IndexedFaceSetFactory ifsf = new IndexedFaceSetFactory();
 
+        // change PolytopeColor to yellow
         Color[] vertexColor = new Color[fixedList.length];
         for (int i = 0; i < vertexColor.length; i++) {
             vertexColor[i] = Color.YELLOW;
         }
 
+        // initializing IndexedFaceSetFactory
         ifsf.setVertexCount(fixedList.length);
         ifsf.setVertexCoordinates(fixedList);
         ifsf.setVertexColors(vertexColor);
@@ -82,6 +92,7 @@ public class ViewerFrame extends JFrame {
 
         ifsf.update();
 
+        // initializing needed nodes
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         SceneGraphComponent rootNode = new SceneGraphComponent("root");
         SceneGraphComponent cameraNode = new SceneGraphComponent("camera");
@@ -97,6 +108,7 @@ public class ViewerFrame extends JFrame {
 
         geometryNode.setGeometry(ifsf.getIndexedFaceSet());
 
+        // initializing tools
         RotateTool rotateTool = new RotateTool();
         geometryNode.addTool(rotateTool);
 
@@ -121,6 +133,7 @@ public class ViewerFrame extends JFrame {
         SceneGraphPath camPath = new SceneGraphPath(rootNode, cameraNode);
         camPath.push(camera);
 
+        // adding the nodes to the JRViewer
         jr = new JRViewer();
         jr.setContent(rootNode);
         jr.startupLocal();
@@ -148,11 +161,18 @@ public class ViewerFrame extends JFrame {
         this.setVisible(true);
     }
 
+    
+    /**
+     * 
+     * Method, which initializes the Buttons on the Frame.
+     * 
+     */
     public void setButtons() {
         JPanel buttons = new JPanel();
         add(buttons);
         buttons.setLayout(null);
 
+        // initialize Buttons
         final JButton points = new JButton("Show Points");
         final JButton export = new JButton("Export as JPEG ...");
         final JButton exportRaw = new JButton("Export as raw data ...");
@@ -163,6 +183,7 @@ public class ViewerFrame extends JFrame {
         buttons.add(export);
         buttons.add(exportRaw);
 
+        // adding ActionListener for the Buttons
         points.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new PointFrame(vertices2);
@@ -203,10 +224,17 @@ public class ViewerFrame extends JFrame {
         });
     }
 
-    public void saveComponentAsJPEG(String filename) {
+    /**
+     * 
+     * This Method saves a Screenshot of the JRViewer's ViewingComponent
+     * to the given path.
+     * 
+     * @param pathToFile given savelocations 
+     */
+    public void saveComponentAsJPEG(String pathToFile) {
         BufferedImage bi = de.jreality.util.ImageUtility.captureScreenshot(jr.getViewer());
         try {
-            ImageIO.write(bi, "jpg", new File(filename));
+            ImageIO.write(bi, "jpg", new File(pathToFile));
         } catch (Exception e) {
             System.out.println("couldnt write picture");
         }
