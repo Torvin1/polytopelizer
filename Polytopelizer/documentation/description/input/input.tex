@@ -1,0 +1,59 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{color,graphicx,framed}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{listings}
+\usepackage[section]{placeins}
+\usepackage{pstricks,pst-tree,pst-node}
+\usepackage{dsfont}
+\usepackage{ulem}
+
+\usepackage[ngerman]{babel}
+\usepackage{ngerman}
+
+\begin{document}
+\section{Eingabe}
+\subsection{Zielsetzung}
+Die Eingabe dient dazu dem Algorithmus ein "apollonian network" zur Verfügung zu stellen, auf dem er Angewendet werden kann. Es wurden zwei Wege der Eingabe gewählt. 
+\begin{itemize}
+\item[•] Kommandozeile
+\item[•] grafisch Oberfläche
+\end{itemize}
+\subsection{Umsetzung}
+\subsubsection{Kommandozeile}
+In der Kommandozeile, gibt es Folgende Möglichkeiten der Eingabe. 
+\begin{lstlisting}[language=JAVA]
+// no arguments - starts the GUI
+java Polytopelizer.java
+
+// ? - shows the help menu
+java Polytopelizer.java ?
+
+/*  random <n> <m> - this will compute m random stacked 
+ *  polytopes with n vertices,
+ *  calculate the maximum coordinates of the three axis 
+ */ and returns the average over all m polytopes
+java Polytobelizer n m
+
+/* <input file> <output file> - uses the given input file,
+ * calculates a stacked polytope and saves the result in 
+ */ the output file
+java Polytopelizer.java "INPUT.FILE" "OUTPUT.FILE"
+\end{lstlisting}
+\subsubsection{grafische Oberfläche}
+Die grafische Oberfläche ermöglicht es durch klicken in eine vorgegebenen Dreiecksfläche selbst manuell einen Graphen zu erstellen und es dann direkt berechnen zu lassen. Dabei ist es möglich Schritte zurückzusetzen, zu speichern und wieder aus Dateien zu laden.
+
+Hinzu kommt ebenfalls die Möglichkeit ein zufällig erstellen Graphen erstellen zu lassen, indem man nur die Anzahl der gewünschten Knoten angibt. 
+
+Die Liste der im Graphen vorhandenen Punkte wird jeweils in einer Liste angezeigt.
+
+Zur Erstellung der grafische Oberfläche wurde das java Paket Swing verwendet.
+\subsection{Ergebnis}
+Ergebnis ist ein Werkzeug, dass es sowohl erlaube einen Graphen zu erstellen, um ihn dem Algorithmus zuzuführen, als auch bereits bestehende Graphen zu verwenden. Zusätzlich dazu können auch Abschätzungen über die entstehenden Dimensionen vorgenommen werden. 
+\subsection{Probleme}
+Das erste größere Projekt in JAVA und die somit fehlende Erfahrung machten den Einstieg schwierig, denn obwohl Konzepte bekannt waren, entstanden Probleme beim Arbeiten mit einer gemeinsamen Entwicklungsumgebung, die sich von der selbst verwendeten unterscheidet.
+Unterschiedliche Geschwindigkeit beim Einstieg ins Projekt erzeugten Probleme beim Testen und Entwickeln von Methoden, die auf die Arbeit anderer aufsetzte. Den Fehler bei sich zu suchen, obwohl er bei anderen lag benötigte viel Zeit.
+
+\end{document}
