@@ -1,6 +1,9 @@
 package Main;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
+
 import Algorithm.Algorithm;
 import Geometry.PointDecimal;
 import Input.*;
@@ -10,15 +13,18 @@ public class Polytopelizer {
 
     public static ApollonianNetwork aN;
     public static LinkedList<PointDecimal> actionstack;
-    public static final String INITIALNETWORKPATH = "initialNetwork.aN";
+    public static final String INITIALNETWORKPATH = "resources/initialNetwork.aN";
     public static InputFrame superFrame;
 
     public static void main(String[] args) {
-
         CLI c = new CLI(args);
         try {
-            aN = Files.fileToApollonianNetwork(c.gui() ? INITIALNETWORKPATH : c
-                    .getInputPath());
+            if(c.gui()){
+                aN = Files.fileToApollonianNetwork(new BufferedReader(new InputStreamReader(
+                        Polytopelizer.class.getClassLoader().getResourceAsStream(INITIALNETWORKPATH), "UTF-8")));
+            }else{
+                aN = Files.fileToApollonianNetwork(c.getInputPath());
+            }
         } catch (Exception e) {
             System.err.println("ERROR - System could not find the file");
             return;

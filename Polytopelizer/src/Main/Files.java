@@ -2,6 +2,7 @@ package Main;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,7 +12,6 @@ import java.util.Random;
 
 import Datastructures.ApollNetwork;
 import Geometry.PointDecimal;
-
 import interfaces.ApollonianNetwork;
 import interfaces.StackedPolytope;
 
@@ -92,12 +92,14 @@ public class Files {
         }
     }
 
-    public static ApollonianNetwork fileToApollonianNetwork(String path)
+    public static ApollonianNetwork fileToApollonianNetwork(String path) throws IOException{
+        return Files.fileToApollonianNetwork(new BufferedReader(new FileReader(path)));
+    }
+    
+    public static ApollonianNetwork fileToApollonianNetwork(BufferedReader br)
             throws IOException {
 
         ApollNetwork aN = null;
-
-        BufferedReader br = new BufferedReader(new FileReader(path));
 
         // read the first three points
         String line = br.readLine();
