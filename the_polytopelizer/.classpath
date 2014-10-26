@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry exported="true" kind="lib" path="D:/Users/Max Willert/Documents/GitHub/polytopelizer/the_polytopelizer/polytopelizer_lib/antlr-3.4-complete.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Users/Max Willert/Documents/GitHub/polytopelizer/the_polytopelizer/polytopelizer_lib/beans.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Users/Max Willert/Documents/GitHub/polytopelizer/the_polytopelizer/polytopelizer_lib/bsh.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Users/Max Willert/Documents/GitHub/polytopelizer/the_polytopelizer/polytopelizer_lib/colorpicker.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Users/Max Willert/Documents/GitHub/polytopelizer/the_polytopelizer/polytopelizer_lib/itextpdf-5.3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Users/Max Willert/Documents/GitHub/polytopelizer/the_polytopelizer/polytopelizer_lib/janino.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Users/Max Willert/Documents/GitHub/polytopelizer/the_polytopelizer/polytopelizer_lib/jreality.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Users/Max Willert/Documents/GitHub/polytopelizer/the_polytopelizer/polytopelizer_lib/jrworkspace.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Users/Max Willert/Documents/GitHub/polytopelizer/the_polytopelizer/polytopelizer_lib/jterm.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Users/Max Willert/Documents/GitHub/polytopelizer/the_polytopelizer/polytopelizer_lib/jython_console.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Users/Max Willert/Documents/GitHub/polytopelizer/the_polytopelizer/polytopelizer_lib/jython-standalone-2.5.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Users/Max Willert/Documents/GitHub/polytopelizer/the_polytopelizer/polytopelizer_lib/NetUtil.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Users/Max Willert/Documents/GitHub/polytopelizer/the_polytopelizer/polytopelizer_lib/sunflow.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Users/Max Willert/Documents/GitHub/polytopelizer/the_polytopelizer/polytopelizer_lib/xpp3-1.1.4c.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Users/Max Willert/Documents/GitHub/polytopelizer/the_polytopelizer/polytopelizer_lib/xstream-1.4.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
